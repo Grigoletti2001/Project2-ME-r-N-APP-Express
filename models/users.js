@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-//const crypto = require ('crypto')//
+
 // to include models before routes so that routes will be able to use models.
 
 
@@ -21,9 +21,7 @@ const userSchema = new mongoose.Schema({
 
     diagnosis: String, 
     
-    hash: String, 
 
-    salt: String
 
 
 }, {timestamp: true}); 

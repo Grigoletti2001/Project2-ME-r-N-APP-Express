@@ -7,6 +7,11 @@ const quickSchema = mongoose.Schema({
         default: Date.now()
      },
 
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true // dogs must have a user
+    },
    
     entry: { 
         type: String,

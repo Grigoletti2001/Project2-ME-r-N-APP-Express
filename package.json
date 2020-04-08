@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/Grigoletti2001/Project2-ME-r-N-APP-Express#readme",
   "dependencies": {
-    "ejs": "^3.0.2"
+    "bcrypt": "^4.0.1",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1"
   }
 }

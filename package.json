@@ -1,0 +1,23 @@
+{
+  "name": "ajournal",
+  "version": "1.0.0",
+  "description": "an autism journalism app (aJournal or journalA)  which allows those on the Austism spectrum articulate and identify their emotions using the ME(R)N framework. Uses React module  for emoticons based on the Apple SDK (ios/Mac OS/webkit, etc.). ",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grigoletti2001/Project2-ME-r-N-APP-Express.git"
+  },
+  "author": "Joseph Grigoletti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Grigoletti2001/Project2-ME-r-N-APP-Express/issues"
+  },
+  "homepage": "https://github.com/Grigoletti2001/Project2-ME-r-N-APP-Express#readme"
+}

@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Grigoletti2001/Project2-ME-r-N-APP-Express/issues"
   },
-  "homepage": "https://github.com/Grigoletti2001/Project2-ME-r-N-APP-Express#readme"
+  "homepage": "https://github.com/Grigoletti2001/Project2-ME-r-N-APP-Express#readme",
+  "dependencies": {
+    "ejs": "^3.0.2"
+  }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/journal">Journal</a> | 
+      <a href="/resources">Resources</a>
+    </nav>
+
+    <nav>
+      <% if(loggedIn) { %>
+        You are logged in as <%= username %>
+        (<a href="/auth/logout">Log out</a>)
+      <% } else { %>    
+        <a href="/auth/register">Register</a> |
+        <a href="/auth/login">Log in</a>
+      <% }  %>
+    </nav>
+
+  </header>
+
+  <%= /* otherTestMessage */ %>
+
+  <p>
+    <%= message %>  
+  </p>

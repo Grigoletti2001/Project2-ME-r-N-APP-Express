@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const journalSchema = mongoose.Schema({
     const dogSchema = new mongoose.Schema({
-        
+
         title: {
             type: String,
             required: true
@@ -44,9 +44,6 @@ const journalSchema = mongoose.Schema({
             included: Boolean, 
             required: true
         }
-
-
-
 
 
     });

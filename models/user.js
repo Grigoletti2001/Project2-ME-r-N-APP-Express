@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema({
 
     email: String,  
 
-    diagnosis: String, 
     
 
 

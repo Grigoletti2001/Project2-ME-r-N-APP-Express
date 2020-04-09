@@ -72,10 +72,13 @@ server.use((req, res, next) => {
 
 const authController = require('./controllers/authController')
 server.use('/auth', authController)
-const dogController = require('./controllers/dogController')
-server.use('/dogs', dogController)
+
+const journalController = require('./controllers/journalController')
+server.use('/journals', journalController)
+
 const userController = require('./controllers/userController')
 server.use('/users', userController)
+
 const commentController = require('./controllers/commentController')
 server.use('/comments', commentController)
 

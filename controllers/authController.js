@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 
         // render them in a template
         res.render('journals/index.ejs', {
-            journals: foundAuthors
+            journals: foundUsers
         })
 
     } catch (err) {
@@ -34,9 +34,9 @@ router.get('/new', (req, res) => {
 // author show route: GET /authors/:id -- info for ONE author
 router.get('/:id', async (req, res, next) => {
     try {
-        const foundAuthor = await Author.findById(req.params.id)
-        const foundArticles = await Article.find({ author: req.params.id })
-        res.render('authors/show.ejs', {
+        const foundUser = await User.findById(req.params.id)
+        const foundJournals = await Journal.find({ author: req.params.id })
+        res.render('journals/show.ejs', {
             author: foundAuthor,
             articles: foundArticles
         })
@@ -76,18 +76,6 @@ router.delete('/:id', async (req, res, next) => {
 
 })
 
-
-// edit: GET /authors/:id/edit
-router.get('/:id/edit', async (req, res, next) => {
-    try {
-        const foundAuthor = await Author.findById(req.params.id)
-        res.render('authors/edit.ejs', {
-            author: foundAuthor
-        })
-    } catch (err) {
-        next(err)
-    }
-})
 
 
 // update: PUT /authors/:id (or PATCH /authors/:id)

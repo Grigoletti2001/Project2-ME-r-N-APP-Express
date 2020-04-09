@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const journalSchema = mongoose.Schema({
-    const dogSchema = new mongoose.Schema({
+
 
         title: {
             type: String,
             required: true
-        }
+        },
         
         date: {
             type: Date,
@@ -52,7 +52,7 @@ const journalSchema = mongoose.Schema({
 
 
 
-///conenct journal to user (see dog to user... example. )
+///conenct journal to user (see journal to user... example. )
   
 const Journal = mongoose.model ("Journal", journalSchema);
 

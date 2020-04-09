@@ -49,7 +49,7 @@ router.get('/:id', async (req, res, next) => {
 // we can block the rest of this controller 
 router.use(requireAuth)
 
-// POST /dogs -- dog create route
+// journals /dogs -- journal create route
 router.post('/', async (req, res, next) => {
     try {
 

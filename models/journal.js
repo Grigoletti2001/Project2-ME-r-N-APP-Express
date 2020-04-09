@@ -40,8 +40,7 @@ const journalSchema = mongoose.Schema({
             required: true
         }, 
         emotion: {
-            emoji: String,
-            included: Boolean, 
+            type: String, 
             required: true
         }
 

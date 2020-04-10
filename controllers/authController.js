@@ -62,20 +62,9 @@ router.post('/', async (req, res, next) => {
 })
 
 // author destroy route: DELETE /authors/:id
-router.delete('/:id', async (req, res, next) => {
-    try {
-        await Article.remove({ author: req.params.id })
-        // articles are now deleted
-        // so we're safe to delete the author
-        await Author.findByIdAndRemove(req.params.id)
-        // go to author index so they can see that author was deleted
-        res.redirect('/authors')
-    } catch (err) {
-        next(err)
-    }
+//no delete or destroy route allowed. 
 
-})
-
+// no edit route needed
 
 
 // update: PUT /authors/:id (or PATCH /authors/:id)
@@ -83,7 +72,7 @@ router.put('/:id', async (req, res, next) => {
     try {
         // shortcut -- we are just using req.body directly here
         // this is quick and dirty, we may need to update it first in some cases
-        const updatedAuthor = await Author.findByIdAndUpdate(
+        const updatedJournal = await User.findByIdAndUpdate(
             req.params.id,
             req.body,
             { new: true }
@@ -99,7 +88,9 @@ router.put('/:id', async (req, res, next) => {
 
 // if you forget to export you will see:
 // "expected a middleware function but got a Object" -- why? 
-module.exports = router 
+
+
+
 
 
 

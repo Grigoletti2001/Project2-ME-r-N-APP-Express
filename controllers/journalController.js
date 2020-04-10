@@ -1,19 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const Journal = require('../models/dog')
+const Journal = require('../models/journal')
 const User = require('../models/user')
 
 // GET /users/:userId/dogs
-router.get('/:userId/dogs', async (req, res, next) => {
+router.get('/:userId/journal', async (req, res, next) => {
     try {
-        const journalEntries = await Dog.find({ user: req.params.userId }).populate('user')
-        // you could (And probably should) also just get this information 
-        // with .populate('user' on the previous query)
+        const journalEntries = await Journal.find({ user: req.params.userId }).populate('user')
+ 
         const user = await User.findById(req.params.userId)
 
-        res.render('users/dogList.ejs', {
+        res.render('users/.ejs', {
             user: user,
-            dogs: journalEntries,
             userId: user.id
         })
 

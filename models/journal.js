@@ -10,7 +10,7 @@ const journalSchema = mongoose.Schema({
         
         date: {
             type: Date,
-
+            required:false,
             default: Date.now()
         }, 
 
@@ -41,7 +41,7 @@ const journalSchema = mongoose.Schema({
         }, 
         emotion: {
             type: String, 
-            required: true
+            required: false
         }
 
 

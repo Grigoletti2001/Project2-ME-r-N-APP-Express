@@ -30,13 +30,13 @@ router.get('/new', requireAuth, (req, res) => {
 
 router.get('/:id', async (req, res, next) => {
     try {
-        const autismUserName = await Dog.findById(req.params.id)
+        const autismUserName = await Journal.findById(req.params.id)
             .populate('user')
             .populate('comments.user')
 
         console.log(autismUserName);
         res.render('journals/show.ejs', {
-            dog: autismUserName,
+            journal: autismUserName,
             userId: req.session.userId
         })
     } catch (err) {
@@ -49,20 +49,26 @@ router.get('/:id', async (req, res, next) => {
 // we can block the rest of this controller 
 router.use(requireAuth)
 
-// journals /dogs -- journal create route
+// journals /journals -- journal create route
 router.post('/', async (req, res, next) => {
     try {
 
         const entryToCreate = {
-            name: req.body.name,
-            age: req.body.age,
-            breed: req.body.breed,
-            user: req.session.userId
+            title: req.body.title,
+      //deleting date-info because doing it client side.
+            user: req.session.userId,
+            intro: req.body.intro,
+            context: req.body.context,
+            climax: req.body.climax,
+            acceptance: req.body.acceptance,
+            conclusion: req.body.conclusion,
+            emotion: req.body.emoticon
+
         }
-        const createdEntry = await Dog.create(entryToCreate)
+        const createdEntry = await Journal.create(entryToCreate)
 
         req.session.message = `${createdEntry.name} successfully added.`
-        res.redirect('/dogs/' + createdEntry.id)
+        res.redirect('/journals/' + createdEntry.id)
 
     } catch (err) {
         next(err)
@@ -73,3 +79,4 @@ router.post('/', async (req, res, next) => {
 
 
 module.exports = router
+

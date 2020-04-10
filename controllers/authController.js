@@ -1,83 +1,136 @@
-
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const bcrypt = require('bcrypt') // this just scrambles data (it is not middleware)
 
-
-router.get('/register', (req, res) => {
-    res.render('views/auth/register.ejs')
-})
-
-
 // registration form route: GET /auth/register
-router.get('/', async (req, res, next) => {
-    try {
-        // get ALL the authors from the db
-        const allJournals = await Journal.find({})
+router.get('/register', (req, res) => {
+    res.render('auth/register.ejs')
+})
 
-        // render them in a template
-        res.render('views/auth/register.ejs', {
-            journals: foundUsers
+
+// register route: POST /auth/register
+router.post('/register', async (req, res, next) => {
+
+    try {
+        // create a user in the database
+        console.log(req.body);
+        const desiredUsername = req.body.username
+        const desiredPassword = req.body.password
+
+        // but first! see if an account already exists with this username
+        const userWithThisUsername = await User.findOne({
+            username: desiredUsername
         })
+        // let's see what we get
+        console.log(userWithThisUsername);
+        // ^^ note -- findOne will return NULL if it doesn't find anything
+        // (.find() would return an empty array)
 
-    } catch (err) {
-        next(err)
+        // if username is taken  -- 
+        if (userWithThisUsername) { // this works bc null is falsey and 
+            // an object is truthy
+
+            // tell them no -- it's taken (use session)
+            console.log("username exists")
+            req.session.message = `Username ${desiredUsername} already taken.`
+            res.redirect('/auth/register')
+
+        }
+        // else // i.e. username is available
+        else {
+            // create the user
+
+            // encrypt the password with bcrypt
+            // "salt" is like an extra "ingredient" in the encryption process
+            const salt = bcrypt.genSaltSync(10) // 10 is a nice reasonable value
+            // higher val = more secure but slower
+
+            const hashedPassword = bcrypt.hashSync(desiredPassword, salt)
+
+
+            const createdUser = await User.create({
+                username: desiredUsername,
+                password: hashedPassword
+            })
+
+            // SAVE THE FACT THAT THEY ARE LOGGED IN TO THE SESSION
+            // this is how you "log them in"
+            req.session.loggedIn = true
+            // helpful to store something that uniquely identifies the user
+            // like id, or username, or both
+            req.session.userId = createdUser._id // "more unique"
+            req.session.username = createdUser.username
+
+            // res redirect etc
+            // later we will redirect to home 
+            req.session.message = `Thanks for signing up, ${createdUser.username}`
+            res.redirect('/')
+
+        }
+
+    } catch (error) {
+        next(error)
     }
+
 })
 
-// author new route: GET /authors/new 
-router.get('/new', (req, res) => {
-    res.render('journals/new.ejs')
+// login routes
+
+// show form GET /auth/login
+router.get('views/auth/login', (req, res) => {
+    // https://expressjs.com/en/api.html#res.locals
+    // you can add info to res.locals at any time in the request-response cycle 
+    // it will be available in the template (unlike session)
+    // and it will be cleared out after the response is complete (unlike session)
+    // res.locals.testMessage = "hello this is a test only visible on login page i set this with res.locals in GET /auth/login"
+
+    res.render('views/auth/login.ejs')
 })
 
-// author show route: GET /authors/:id -- info for ONE author
-router.get('/:id', async (req, res, next) => {
+// process login POST /auth/login 
+router.post('views/auth/login.ejs', async (req, res, next) => {
+
     try {
-        const foundUser = await User.findById(req.params.id)
-        const foundJournals = await Journal.find({ author: req.params.id })
-        res.render('journals/show.ejs', {
-            author: foundAuthor,
-            articles: foundArticles
-        })
-    } catch (err) {
-        next(err)
-    }
+        // is there a user with this username? 
+        const user = await User.findOne({ username: req.body.username })
 
-}) // router.get('/:id')
+        // if not
+        if (!user) {
+            // user does not exist
+            console.log("bad username");
+            // message: bad username or password
+            req.session.message = "Invalid username or password."
+            // redirect to login page so they can reattempt   
+            res.redirect('/auth/login')
 
-// author create route: POST /authors
-router.post('/', async (req, res, next) => {
-    try {
-        // Add author to db
-        // we're just using req.body directly -- note that that means 
-        // we are giving up a chance to modify it 
-        await Author.create(req.body)
-        // send them to the index so they can see that the author was added
-        res.redirect('/authors')
-    } catch (err) {
-        next(err)
-    }
+        }
 
-})
+        else {
+            const loginInfoIsValid = bcrypt.compareSync(req.body.password, user.password)
 
-// author destroy route: DELETE /authors/:id
-//no delete or destroy route allowed. 
+            if (loginInfoIsValid) {
+                // log them in in session
+                req.session.loggedIn = true
+                req.session.userId = user._id
+                req.session.username = user.username
 
-// no edit route needed
+                // set message welcome back
+                req.session.message = `Welcome back, ${user.username}!`
+                // redirect to /
+                res.redirect('/')
 
+            }
+            // else // i.e. pw is bad
+            else {
+                console.log("bad password");
+                req.session.message = "Invalid username or password."
+                // redirect to /auth/login
+                res.redirect('/auth/login')
+            }
 
-// update: PUT /authors/:id (or PATCH /authors/:id)
-router.put('/:id', async (req, res, next) => {
-    try {
-        // shortcut -- we are just using req.body directly here
-        // this is quick and dirty, we may need to update it first in some cases
-        const updatedJournal = await User.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        )
-        res.redirect(`/authors/${updatedAuthor._id}`)
+        } // user exists (else)
+
     } catch (err) {
         next(err)
     }
@@ -85,14 +138,12 @@ router.put('/:id', async (req, res, next) => {
 })
 
 
-
-// if you forget to export you will see:
-// "expected a middleware function but got a Object" -- why? 
-
-
-
-
-
+router.get('/logout', async (req, res) => {
+    // since the session is where the info is stored that makes the user "logged in"
+    // we can "log them out" by just destroying the session
+    await req.session.destroy()
+    res.redirect('/auth/login')
+})
 
 
 

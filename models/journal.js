@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 
 const journalSchema = mongoose.Schema({
-    const dogSchema = new mongoose.Schema({
 
         title: {
             type: String,
             required: true
-        }
+        },
         
         date: {
             type: Date,
@@ -41,7 +40,6 @@ const journalSchema = mongoose.Schema({
         }, 
         emotion: {
             emoji: String,
-            included: Boolean, 
             required: true
         }
 

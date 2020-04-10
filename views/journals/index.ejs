@@ -2,21 +2,10 @@
 
   <%- include('./nav.ejs') %>
 
+
   <h3>Journal entries </h3>
 
   <ul>
-    <% journals.forEach((journal) => { %>
-      <li>
-        <a href="/journals/<%= journal.id %>"><%= journal.name %></a>
-        (
-          owner: 
-          <a href="/users/<%= journal.user.id %>/journals">
-            <%= journal.user.username %>            
-          </a>
-        )
-      </li>
-    <% }) %>    
-  </ul>
 
   
 

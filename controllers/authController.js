@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt') // this just scrambles data (it is not middlewa
 
 // registration form route: GET /auth/register
 router.get('/register', (req, res) => {
+    console.log("hello")
     res.render('auth/register.ejs')
 })
 
@@ -55,7 +56,10 @@ router.post('/register', async (req, res, next) => {
             const createdUser = await User.create({
                 username: desiredUsername,
                 password: hashedPassword
+             
             })
+            console.log("tested password")
+            console.log(createdUser)
             // the full obj of the created user = un + hashed pw. 
 
             //cookie monster&  sessions 
@@ -148,11 +152,6 @@ router.get('/logout', async (req, res) => {
     await req.session.destroy()
     res.redirect('/auth/login')
 })
-
-
-
-
-
 
 
 

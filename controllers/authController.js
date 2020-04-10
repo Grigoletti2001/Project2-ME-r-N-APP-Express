@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt') // this just scrambles data (it is not middlewa
 
 
 router.get('/register', (req, res) => {
-    res.render('auth/register.ejs')
+    res.render('views/auth/register.ejs')
 })
 
 
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
         const allJournals = await Journal.find({})
 
         // render them in a template
-        res.render('journals/index.ejs', {
+        res.render('views/auth/register.ejs', {
             journals: foundUsers
         })
 

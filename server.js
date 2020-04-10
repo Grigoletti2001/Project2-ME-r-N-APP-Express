@@ -76,8 +76,8 @@ server.use('/auth', authController)
 const journalController = require('./controllers/journalController')
 server.use('/journals', journalController)
 
-// const userController = require('./controllers/userController')
-// server.use('/users', userController)
+const userController = require('./controllers/userController')
+server.use('/users', userController)
 
 
 

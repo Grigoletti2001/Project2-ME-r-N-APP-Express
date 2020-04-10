@@ -5,12 +5,12 @@ const bcrypt = require('bcrypt') // this just scrambles data (it is not middlewa
 
 // registration form route: GET /auth/register
 router.get('/register', (req, res) => {
-    res.render('auth/register.ejs')
+    res.render('views/auth/register.ejs')
 })
 
 
 // register route: POST /auth/register
-router.post('/register', async (req, res, next) => {
+router.post('/auth/register.ejs', async (req, res, next) => {
 
     try {
         // create a user in the database

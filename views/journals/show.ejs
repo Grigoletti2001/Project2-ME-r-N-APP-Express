@@ -22,15 +22,18 @@
 
   <% } %>
 
-  <ul>
+   <ul>
     <% journal.comments.forEach((comment) => { %>
       <li>
         <%= comment.text %>
         <br />
         <small>(<%= comment.date.toLocaleString() %>) by (<%= comment.user.username %>) </small>
       </li>
+
+  </ul> 
+
     <% }) %>
-  </ul>
+
 
 
 

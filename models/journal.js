@@ -10,8 +10,8 @@ const journalSchema = mongoose.Schema({
         
         date: {
             type: Date,
-            required:false
-            default: Date.now()
+      
+         
         }, 
 
         user: {

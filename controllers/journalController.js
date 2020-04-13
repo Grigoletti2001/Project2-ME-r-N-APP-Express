@@ -6,11 +6,19 @@ const requireAuth = require('../lib/requireAuth')
 
 router.get('/', async (req, res, next) => {
     try {
-        const autismUserNames = await Dog.find().populate('user')
+        const autismUserNames = await Journal.find().populate('user')
         console.log(autismUserNames);
         res.render('journals/index.ejs', {    //need help with this 
             user: autismUserNames,
-            userId: req.session.userId
+            userId: req.session.userId,
+            title: req.session.title,
+            intro: req.session.intro,
+            context: req.session.context,
+            climax: req.session.climax,
+            acceptance: req.session.acceptance,
+            conclusion: req.session.conclusion
+
+
         })
     } catch (err) {
         next(err)
@@ -62,7 +70,7 @@ router.post('/', async (req, res, next) => {
             climax: req.body.climax,
             acceptance: req.body.acceptance,
             conclusion: req.body.conclusion,
-         
+            emotion: req.body.emoticon
 
         }
         const createdEntry = await Journal.create(entry)
@@ -74,6 +82,41 @@ router.post('/', async (req, res, next) => {
         next(err)
     }
 })
+
+//edit route
+router.get('/index/edit', async (req, res, next) => {
+    try {
+        // query for the article
+        const editJournal = await Journal.findById(req.params.id)
+        // query for the list of entries 
+        const foundAuthors = await Author.find({})
+        res.render('journals/edit.ejs', {
+            journal: editJournal,
+           
+        })
+    } catch (err) {
+        next(err)
+    }
+})
+
+// article update route: PUT /articles/:id
+router.put('/:id', async (req, res, next) => {
+    try {
+        const updatedArticle = await Article.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        // redirect back to article show page so user can see updates
+        res.redirect('/journals/' + updatedArticle._id)
+    } catch (err) {
+        next(err)
+    }
+})
+
+
+
+
+
+
+
+
 
 
 

@@ -2,7 +2,29 @@
 
   <%- include('./nav.ejs') %>
 
+  <h2>Property of Tom Riddle:
+    <br> All the latest Journal entries (Journal index)</h2>
 
+  <ul>
+    <% journals.forEach((article) => { %>
+      <li>
+        <div>
+          <strong>
+            <a href="/journals/<%= journal.id %>">            
+              <%= journal.title %>
+            </a>
+          </strong>
+        </div>
+        <div>
+          <strong><%= journal.posted.toLocaleString() %></strong>         
+        </div>
+        <div>
+           <%= journal.title %>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+  
   <h3>Journal entries </h3>
 
   <form method="POST" action="/auth/login">

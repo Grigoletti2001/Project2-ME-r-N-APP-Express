@@ -5,7 +5,7 @@ const journalSchema = mongoose.Schema({
 
         title: {
             type: String,
-            required: true
+            required: false
         },
         
         date: {
@@ -17,27 +17,27 @@ const journalSchema = mongoose.Schema({
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
-            required: true // dogs must have a user
+            required: false // dogs must have a user
         },
         intro: {
             type: String, 
-            required: true
+            required: false
         }, 
         context: {
             type: String,
-            required: true
+            required: false
         }, 
         climax: {
             type: String,
-            required: true
+            required: false
         }, 
         acceptance: {
             type: String,
-            required: true
+            required: false
         }, 
         conclusion: {
             type: String,
-            required: true
+            required: false
         }, 
         emotion: {
             type: String, 

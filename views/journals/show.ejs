@@ -4,6 +4,9 @@
 
   <%- include('./nav.ejs') %>
 
+<h3> Journals </h3>
+
+        <small>(<%= comment.date.toLocaleString() %>) by (<%= comment.user.username %>) </small>
 
 
 
@@ -12,6 +15,19 @@
 
 
 
+
+
+
+
+ <h4>Journal Admin</h4>
+
+  <div>
+    <a href="/journals/<%= journal.id %>/edit">Edit this entry</a>
+  </div>
+
+  <form method="POST" action="/journals/<%= journal.id %>?_method=DELETE">
+    <button>Delete this entry</button>
+  </form>
 
 
 <%- include('../partials/footer.ejs') %>

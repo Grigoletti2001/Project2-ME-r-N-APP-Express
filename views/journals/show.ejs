@@ -7,32 +7,6 @@
 
 
 
-<p>
-    <%= journal.name %> is a <%= journal.age %> year old <%= journal.breed %> that belongs to <%= journal.user.username %>.
-  </p>
-
-  <% if(username) { %>
-
-  <form method="POST" action="/comments/<%= journal.id %>">
-    <textarea name="text" placeholder="What do you think about <%= journal.name %>?"></textarea>
-    <br />
-    <button>Add entry</button>
-  </form>
-
-
-  <% } %>
-
-   <ul>
-    <% journal.comments.forEach((comment) => { %>
-      <li>
-        <%= comment.text %>
-        <br />
-        <small>(<%= comment.date.toLocaleString() %>) by (<%= comment.user.username %>) </small>
-      </li>
-
-  </ul> 
-
-    <% }) %>
 
 
 

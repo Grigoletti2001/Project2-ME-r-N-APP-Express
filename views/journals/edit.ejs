@@ -1,0 +1,168 @@
+<%- include('../partials/header.ejs') %>
+
+
+<form method="POST" action="/journals/<%= journal.id %>?_method=PUT">
+    <fieldset>
+    <legend>Enter a new journal emotional event here</legend>
+    <h2>Title for Journal Entry</h2>
+    <br />
+    <div>
+      <label for="title"></label>
+      <textarea
+        name="title"
+        id="title"
+        rows="3"
+        cols="50"
+        placeholder="Enter introduction"
+      ></textarea>
+    </div>
+
+    <br />
+    <div>
+      <h2>Date & time</h2>
+      <p><span id="datetime"></span></p>
+
+      <script>
+        let dt = new Date();
+        document.getElementById("datetime").innerHTML = dt.toLocaleString();
+      </script>
+    </div>
+
+    <br />
+
+    <div>
+      <h3>Introduction:</h3>
+      <label for="intro"></label>
+      <textarea
+        name="intro"
+        id="intro"
+        rows="4"
+        cols="50"
+        placeholder="Enter introduction"
+      ></textarea>
+    </div>
+    <br />
+
+    <label for="emoticon">How do you feel as you think about this?:</label>
+
+    <select name="emoticon" id="emoticon">
+      <option value="">--Please choose an option--</option>
+      <option value="happy">happy</option>
+      <option value="sad">sad</option>
+      <option value="neutral">neutral</option>
+      <option value="depressed">depressed</option>
+      <option value="anxious">anxious</option>
+    </select>
+
+    <br />
+
+    <div>
+      <h3>Context:</h3>
+
+      <label for="context"></label>
+      <textarea
+        name="context"
+        id="context"
+        rows="4"
+        cols="50"
+        placeholder="Enter context"
+      ></textarea>
+    </div>
+    <br />
+
+    <label for="emoticon">How do you feel as you fill out this field?:</label>
+
+    <select name="emoticon" id="emoticon">
+      <option value="">--Please choose an option--</option>
+      <option value="happy">happy</option>
+      <option value="sad">sad</option>
+      <option value="neutral">neutral</option>
+      <option value="depressed">depressed</option>
+      <option value="anxious">anxious</option>
+    </select>
+
+    <br />
+
+    <div>
+      <h3>Emotional Climax:</h3>
+      <label for="climax"></label>
+      <textarea
+        name="climax"
+        id="climax"
+        rows="7"
+        cols="50"
+        placeholder="What was the high point of emotional intensity? Describe it in as much detail as possible. "
+      ></textarea>
+    </div>
+    <br />
+    <label for="emoticon">How do you feel as you fill out this field?:</label>
+    <select name="emoticon" id="emoticon">
+      <option value="">--Please choose an option--</option>
+      <option value="happy">happy</option>
+      <option value="sad">sad</option>
+      <option value="neutral">neutral</option>
+      <option value="depressed">depressed</option>
+      <option value="anxious">anxious</option>
+    </select>
+
+    <br />
+
+    <br />
+    <br />
+
+    <div>
+      <h3>Plan for acceptance:</h3>
+      <label for="acceptance"></label>
+      <textarea
+        name="aceptance"
+        id="aceptance"
+        rows="10"
+        cols="50"
+        placeholder="Enter how you plan to get to acceptance."
+      ></textarea>
+    </div>
+    <br />
+    <br />
+    <label for="emoticon">How do you feel as you fill out this field?:</label>
+
+    <select name="emoticon" id="emoticon">
+      <option value="">--Please choose an option--</option>
+      <option value="happy">happy</option>
+      <option value="sad">sad</option>
+      <option value="neutral">neutral</option>
+      <option value="depressed">depressed</option>
+      <option value="anxious">anxious</option>
+    </select>
+
+    <br /><br />
+
+    <br />
+    <div>
+      <textarea
+        for="conclusion"
+        id="conclusion"
+        rows="7"
+        cols="50"
+        placeholder="Enter introduction"
+      ></textarea>
+    </div>
+
+    <br />
+    <label for="emoticon">How do you feel as you fill out this field?:</label>
+
+    <select name="emoticon" id="emoticon">
+      <option value="">--Please choose an option--</option>
+      <option value="happy">happy</option>
+      <option value="sad">sad</option>
+      <option value="neutral">neutral</option>
+      <option value="depressed">depressed</option>
+      <option value="anxious">anxious</option>
+    </select>
+
+    <br /><br />
+    <button>Add Entry</button>
+  </fieldset>
+</form>
+
+
+<%- include('../partials/footer.ejs') %>

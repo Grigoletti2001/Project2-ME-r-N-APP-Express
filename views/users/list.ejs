@@ -7,15 +7,6 @@
   <h3>All entries for user: <%= user.username %></h3>
 
 
-<ul>
-    <% journals.forEach((journal) => { %>
-      <li>
-        <a href="/journals/<%= journal.id %>"><%= journal.name %></a>
-      </li>
-    <% }) %>    
-  </ul>
 
-  <strong>sort by date</strong> 
-  //make into a button 
 
 <%- include('../partials/footer.ejs') %>

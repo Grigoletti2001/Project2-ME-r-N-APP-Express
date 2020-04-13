@@ -53,7 +53,7 @@ router.use(requireAuth)
 router.post('/', async (req, res, next) => {
     try {
 
-        const entryToCreate = {
+        const entry = {
             title: req.body.title,
       //deleting date-info because doing it client side.
             user: req.session.userId,
@@ -62,10 +62,10 @@ router.post('/', async (req, res, next) => {
             climax: req.body.climax,
             acceptance: req.body.acceptance,
             conclusion: req.body.conclusion,
-            emotion: req.body.emoticon
+         
 
         }
-        const createdEntry = await Journal.create(entryToCreate)
+        const createdEntry = await Journal.create(entry)
 
         req.session.message = `${createdEntry.name} successfully added.`
         res.redirect('/journals/' + createdEntry.id)

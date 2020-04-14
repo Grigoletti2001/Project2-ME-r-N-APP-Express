@@ -4,7 +4,7 @@
 
 <H3> Edit journal entry </H3>
 
- <form method="PUT" action="/journals/<%= journal.id %>?_method=PUT">
+ <form method="POST" action="/journals/<%= journal.id %>?_method=PUT">
 
   <input type="hidden" name="_method" value="PUT">
 

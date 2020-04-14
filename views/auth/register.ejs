@@ -1,0 +1,50 @@
+<%- include('../partials/header.ejs') %>
+ <div class="box">
+  <h3>Create an account here :</h3>
+
+
+<h2>Choose an username & password </h2>
+  <form method="POST" action="/auth/register">
+
+<fieldset> 
+<br> 
+<div class="registration"> 
+
+
+      <label for="username">Username &nbsp:&nbsp</label>
+        <input 
+          id="username" 
+          type="text" 
+          name="username" 
+          placeholder="Choose a username" 
+        />
+
+  </div>
+
+<br> 
+<div>
+        <label for="password">Password &nbsp; :&nbsp </label>
+        <input 
+          id="password"
+          type="password" 
+          name="password"
+          placeholder="Choose a password"
+        >
+      </div>
+      <button>Sign up!</button>
+</fieldset>
+  </form>
+
+<p>Already have an account?</p>
+  <br>
+  <p><a href="/auth/login">Login</a></p>
+  <br>
+    <p>Or go <a href="/">Home</a>.</p>
+
+
+
+
+
+</div>
+
+<%- include('../partials/footer.ejs') %>

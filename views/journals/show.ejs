@@ -1,0 +1,44 @@
+
+<%- include('../partials/header.ejs') %>
+
+
+  <%- include('./nav.ejs') %>
+
+ <div class="box">
+
+ <div class="flex-container">
+
+
+<h3><%= journal.title %> </h3>
+<span>Date: <%= journal.date %> </span>
+
+
+
+ <article>
+    <%= journal.intro %>
+    <%= journal.context %>
+    <%= journal.climax %>
+  </article>
+
+
+<br>
+<br><br><br><br><br><br>
+ <h4>Journal Admin</h4>
+
+  <div>
+    <a href="/journals/<%= journal.id %>/edit">Edit this entry</a>
+  </div>
+<br>
+  <form method="POST" action="/journals/<%= journal.id %>?_method=DELETE">
+    <input type="hidden" name="_method" value="DELETE">
+    <button>Delete this entry</button>
+  </form>
+
+</div>
+
+
+</div>
+
+</div>
+
+<%- include('../partials/footer.ejs') %>

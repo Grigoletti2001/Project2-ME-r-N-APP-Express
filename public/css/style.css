@@ -1,0 +1,64 @@
+body {
+    background-color: whitesmoke; 
+    font-family: 'Old Standard TT', serif;
+    background-image: url("https://st2.depositphotos.com/1036506/8509/i/950/depositphotos_85093138-stock-photo-old-dirty-paper-backdrop-with.jpg");
+    background-position: center; 
+    background-repeat: repeat; 
+    background-size: cover; 
+
+    input[type=submit] {
+    width: 30em;  height: 5em;
+}
+
+}
+
+
+header, footer {
+justify-content: center; 
+
+}
+
+
+.flex-container {
+  display: flex;
+justify-content: center; 
+flex-direction: column;
+}
+
+
+
+.box {
+justify-content: center; 
+}
+
+ul {
+  list-style-type: none;
+  color: black; 
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FFF8E7;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #15f4ee;
+}
+
+
+article { 
+    text-align: center ;
+}
+

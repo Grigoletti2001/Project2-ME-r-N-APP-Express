@@ -5,6 +5,11 @@ body {
     background-position: center; 
     background-repeat: repeat; 
     background-size: cover; 
+
+    input[type=submit] {
+    width: 30em;  height: 5em;
+}
+
 }
 
 
@@ -56,3 +61,4 @@ li a:hover {
 article { 
     text-align: center ;
 }
+

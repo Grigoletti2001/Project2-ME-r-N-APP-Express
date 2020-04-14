@@ -17,7 +17,7 @@ justify-content: center;
 .flex-container {
   display: flex;
 justify-content: center; 
-align-items: left; 
+flex-direction: column;
 }
 
 
@@ -49,6 +49,10 @@ li a {
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-  background-color: #FFFDD0;
+  background-color: #15f4ee;
 }
 
+
+article { 
+    text-align: center ;
+}

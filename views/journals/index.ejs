@@ -1,9 +1,10 @@
 <%- include('../partials/header.ejs') %>
 
   <%- include('./nav.ejs') %>
+ <div class="box">
 
-  <h2>Property of Tom Riddle:
-    <br> All the latest Journal entries (Journal index)</h2>
+  
+    <h2> All the latest Journal entries </h2>
 
   <ul>
     <% journals.forEach((journal) => { %>
@@ -62,6 +63,6 @@
 
   
 
-
+</div>
 
 <%- include('../partials/footer.ejs') %>

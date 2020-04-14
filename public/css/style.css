@@ -2,3 +2,21 @@ body {
     background-color: lightblue; 
     
 }
+
+main{
+
+}
+header, footer {
+
+}
+
+
+.flex-container {
+  display: flex;
+}
+
+
+
+.box {
+
+}

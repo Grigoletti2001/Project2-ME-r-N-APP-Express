@@ -10,23 +10,37 @@
  <div class="box">
 <body>
 
+
+
+
+
   <header>
     <nav>
-      <a href="/">Home</a> |
-      <a href="/journals">All Posts</a> | 
+      <ul>
+      <li> <a href="/">Home</a> </li>
+      <li> <a href="/journals">All Posts</a> </li>
       
-      <a href="/resources">Resources</a>
+     <li> <a href="/resources">Resources</a> </li>
+      </ul>
     </nav>
  
+
+
+
     <nav>
+      <ul>
       <% if(loggedIn) { %>
         You are logged in as <%= username %>
-        (<a href="/auth/logout">Log out</a>)
+        <li><a href="/auth/logout">Log out</a></li>
       <% } else { %>    
-        <a href="/auth/register">Register</a> |
-        <a href="/auth/login">Log in</a>
+        <li><a href="/auth/register">Register</a></li> 
+        <li><a href="/auth/login">Log in</a></li>
       <% }  %>
+      </ul>
     </nav>
+
+
+
 
   </header>
 

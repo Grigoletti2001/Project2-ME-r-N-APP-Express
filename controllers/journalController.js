@@ -31,6 +31,9 @@ router.get("/new", requireAuth, (req, res) => {
   });
 });
 
+
+//journal page. make sure it matches show not index.ejs
+
 router.get("/:id", async (req, res, next) => {
   try {
     const autismUserName = await Journal.findById(req.params.id)
@@ -63,7 +66,8 @@ router.post("/", async (req, res, next) => {
       climax: req.body.climax,
       acceptance: req.body.acceptance,
       conclusion: req.body.conclusion,
-      emotion: req.body.emoticon
+      emotion: req.body.emoticon,
+      date: Date.now()
     };
     const createdEntry = await Journal.create(entry);
 

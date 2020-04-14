@@ -79,12 +79,11 @@ router.post("/", async (req, res, next) => {
 });
 
 //edit route
-router.get("/index/edit", async (req, res, next) => {
+router.get("/:id/edit", async (req, res, next) => {
   try {
     // query for the article
     const editJournal = await Journal.findById(req.params.id);
     // query for the list of entries
-    const foundAuthors = await Author.find({});
     res.render("journals/edit.ejs", {
       journal: editJournal
     });
@@ -96,16 +95,28 @@ router.get("/index/edit", async (req, res, next) => {
 // article update route: PUT /articles/:id
 router.put("/:id", async (req, res, next) => {
   try {
-    const updatedArticle = await Article.findByIdAndUpdate(
+    const updatedJournal = await Journal.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
     );
+
+    console.log("UPDATEEEEEEEEEE")
     // redirect back to article show page so user can see updates
-    res.redirect("/journals/" + updatedArticle._id);
+    res.redirect("/journals/" + updatedJournal._id);
   } catch (err) {
     next(err);
   }
 });
+
+/// delete a journal
+router.delete('/:id', async (req, res, next) => {
+    try {
+        await Journal.findByIdAndRemove(req.params.id)
+        res.redirect('/journals')
+    } catch (err) {
+        next(err)
+    }
+})
 
 module.exports = router;

@@ -7,7 +7,7 @@ const journalSchema = mongoose.Schema({
   },
 
   date: {
-    type: Date
+    type: Date,
   },
 
   user: {

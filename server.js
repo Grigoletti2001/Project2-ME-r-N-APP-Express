@@ -4,6 +4,7 @@ require('dotenv').config()
 const express = require('express')
 const server = express()
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const session = require('express-session')
 const PORT = process.env.PORT
 
@@ -18,6 +19,7 @@ require('./db/db')
 
 server.use(express.static('public'))
 server.use(bodyParser.urlencoded({ extended: false }))
+server.use(methodOverride('_method'))
 
 // sessions
 // this middleware will take session data in server's memory

@@ -1,8 +1,14 @@
 <%- include('../partials/header.ejs') %>
 
+<%- include('./nav.ejs') %>
 
-<form method="POST" action="/journals/<%= journal.id %>?_method=PUT">
-    <fieldset>
+<H3> Edit journal entry </H3>
+
+ <form method="PUT" action="/journals/<%= journal.id %>?_method=PUT">
+
+  <input type="hidden" name="_method" value="PUT">
+
+  <fieldset>
     <legend>Enter a new journal emotional event here</legend>
     <h2>Title for Journal Entry</h2>
     <br />
@@ -14,7 +20,9 @@
         rows="3"
         cols="50"
         placeholder="Enter introduction"
-      ></textarea>
+      >
+      <%= journal.title %> 
+    </textarea>
     </div>
 
     <br />
@@ -39,13 +47,15 @@
         rows="4"
         cols="50"
         placeholder="Enter introduction"
-      ></textarea>
+      >
+    <%= journal.intro %> 
+    </textarea>
     </div>
     <br />
 
     <label for="emoticon">How do you feel as you think about this?:</label>
 
-    <select name="emoticon" id="emoticon">
+    <select name="emoticonIntro" id="emoticon">
       <option value="">--Please choose an option--</option>
       <option value="happy">happy</option>
       <option value="sad">sad</option>
@@ -66,13 +76,15 @@
         rows="4"
         cols="50"
         placeholder="Enter context"
-      ></textarea>
+      >
+      <%= journal.context %> 
+    </textarea>
     </div>
     <br />
 
     <label for="emoticon">How do you feel as you fill out this field?:</label>
 
-    <select name="emoticon" id="emoticon">
+    <select name="emoticonContext" id="emoticon">
       <option value="">--Please choose an option--</option>
       <option value="happy">happy</option>
       <option value="sad">sad</option>
@@ -92,11 +104,13 @@
         rows="7"
         cols="50"
         placeholder="What was the high point of emotional intensity? Describe it in as much detail as possible. "
-      ></textarea>
+      >
+      <%= journal.climax %> 
+    </textarea>
     </div>
     <br />
     <label for="emoticon">How do you feel as you fill out this field?:</label>
-    <select name="emoticon" id="emoticon">
+    <select name="emoticonClimax" id="emoticon">
       <option value="">--Please choose an option--</option>
       <option value="happy">happy</option>
       <option value="sad">sad</option>
@@ -159,15 +173,9 @@
       <option value="anxious">anxious</option>
     </select>
 
-    <br />
-      <div>
-        <label for="body">Article Text</label>
-        <textarea id="body" name="body" placeholder="Enter new article body"><%= article.body%></textarea>
-      </div>
-    <br />
-    <button>Update article with changes/button>
+    <br /><br />
+    <button type="submit">Update Journal</button>
   </fieldset>
 </form>
-
 
 <%- include('../partials/footer.ejs') %>

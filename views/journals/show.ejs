@@ -4,13 +4,15 @@
 
   <%- include('./nav.ejs') %>
 
-<h3> Journals </h3>
+<h3><%= journal.title %> </h3>
 <span>Date: <%= journal.date %> </span>
 
 
 
  <article>
-    <%= journal.body %>
+    <%= journal.intro %>
+    <%= journal.context %>
+    <%= journal.climax %>
   </article>
 
 
@@ -23,6 +25,7 @@
   </div>
 <br>
   <form method="POST" action="/journals/<%= journal.id %>?_method=DELETE">
+    <input type="hidden" name="_method" value="DELETE">
     <button>Delete this entry</button>
   </form>
 

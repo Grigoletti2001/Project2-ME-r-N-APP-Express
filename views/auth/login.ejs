@@ -1,6 +1,5 @@
 <%- include('../partials/header.ejs') %>
- <div class="box">
-   
+<div class="container">
   <h3>Log in here</h3>
 
   <p><%= /* testMessage */ %></p>
@@ -14,25 +13,24 @@
       </legend>
       <div>
         <label for="username">Username:</label>
-        <input 
-          id="username" 
-          type="text" 
-          name="username" 
-          placeholder="Enter your username" 
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="Enter your username"
         />
       </div>
       <div>
         <label for="password">Password</label>
-        <input 
+        <input
           id="password"
-          type="password" 
+          type="password"
           name="password"
           placeholder="Enter your password"
-        >
+        />
       </div>
-      <button>Log in!</button>
+      <button class="btn btn-primary">Log in!</button>
     </fieldset>
   </form>
-
 </div>
 <%- include('../partials/footer.ejs') %>

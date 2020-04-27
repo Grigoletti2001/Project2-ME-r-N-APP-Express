@@ -1,23 +1,13 @@
 <%- include('./partials/header.ejs') %>
 
- <div class="box">
+<div class="container p-pb-2">
+  <h3>Welcome to the journalA</h3>
 
-  <h3>Welcome to the journalA </h3>
+  <% if(currentMood !== undefined) { %>
+  <p>You were most recently feeling: <%= currentMood %></p>
+  <% } %>
 
-  <%
-    if(currentMood !== undefined) {
-      %>
-        <p>You were most recently feeling: <%= currentMood %></p>
-      <% 
-    }
-  %>
+  <strong> <a href="/journals/new"> add a new entry </a> </strong>
+</div>
 
-  <strong> <a href='/journals/new'> add a new entry </a> </strong>
-<br>
-
-  <br> 
-
-
- </div>
-  
 <%- include('./partials/footer.ejs') %>

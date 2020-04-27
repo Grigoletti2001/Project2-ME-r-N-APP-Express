@@ -5,11 +5,9 @@ const journalSchema = mongoose.Schema({
     type: String,
     required: false
   },
-
   date: {
-    type: Date,
+    type: Date
   },
-
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -23,7 +21,6 @@ const journalSchema = mongoose.Schema({
     type: String,
     required: false
   },
-
   context: {
     type: String,
     required: false
@@ -32,27 +29,22 @@ const journalSchema = mongoose.Schema({
     type: String,
     required: false
   },
-
   climax: {
     type: String,
     required: false
   },
-
   emoticonClimax: {
     type: String,
     required: false
   },
-
   acceptance: {
     type: String,
     required: false
   },
-
   emoticonAcceptance: {
     type: String,
     required: false
   },
-
   conclusion: {
     type: String,
     required: false

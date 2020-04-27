@@ -1,69 +1,57 @@
-<%- include('../partials/header.ejs') %>
-
-  <%- include('./nav.ejs') %>
- <div class="box">
-
+<%- include('../partials/header.ejs') %> <%- include('./nav.ejs') %>
+<div class="container">
   <div class="flex-container">
-    <h2> All the latest Journal entries </h2>
+    <h2>All the latest Journal entries</h2>
 
-  <ul>
-    <% journals.forEach((journal) => { %>
+    <ul>
+      <% journals.forEach((journal) => { %>
       <li>
         <div>
           <strong>
-            <a href="/journals/<%= journal.id %>">            
+            <a href="/journals/<%= journal.id %>">
               <%= journal.title %>
             </a>
           </strong>
         </div>
+        <div></div>
         <div>
-
-
-    
-          
-          
-        </div>
-        <div>
-           <%= journal.title %>
+          <%= journal.intro %>
         </div>
       </li>
-    <% }) %>
-  </ul>
-  
-  <h3>Journal entries </h3>
+      <% }) %>
+    </ul>
 
-  <form method="POST" action="/auth/login">
-    <fieldset>
-      <legend>
-        <small>
-          Enter your username and password below
-        </small>
-      </legend>
-      <div>
-        <label for="username">Username:</label>
-        <input 
-          id="username" 
-          type="text" 
-          name="username" 
-          placeholder="Enter your username" 
-        />
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input 
-          id="password"
-          type="password" 
-          name="password"
-          placeholder="Enter your password"
-        >
-      </div>
-      <button>Log in!</button>
-    </fieldset>
-  </form>
+    <h3>Journal entries</h3>
 
+    <form method="POST" action="/auth/login">
+      <fieldset>
+        <legend>
+          <small>
+            Enter your username and password below
+          </small>
+        </legend>
+        <div>
+          <label for="username">Username:</label>
+          <input
+            id="username"
+            type="text"
+            name="username"
+            placeholder="Enter your username"
+          />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <button>Log in!</button>
+      </fieldset>
+    </form>
   </div>
-
-
 </div>
 
 <%- include('../partials/footer.ejs') %>

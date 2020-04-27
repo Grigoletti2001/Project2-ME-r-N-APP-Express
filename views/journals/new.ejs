@@ -2,22 +2,16 @@
 
 <%- include('./nav.ejs') %>
 
+<div class="container">
 
-
-</style>
-
-  <div class="flex-container">
-
-
-<H3> New journal entry </H3>
+<h3> New journal entry </h3>
 
 <form method="POST" action="/journals">
   <fieldset>
     <legend>Enter a new journal emotional event here</legend>
-    <h2>Title for Journal Entry</h2>
-    <br />
-    <div>
-      <label for="title"></label>
+    
+    <div class="form-group">
+      <label for="title"> Title for Journal Entry </label>
       <textarea
         name="title"
         id="title"
@@ -27,8 +21,7 @@
       ></textarea>
     </div>
 
-    <br />
-    <div>
+    <div class="form-group">
       <h2>Date & time</h2>
       <p><span id="datetime"></span></p>
 
@@ -38,9 +31,8 @@
       </script>
     </div>
 
-    <br />
 
-    <div>
+    <div class="form-group">
       <h3>Introduction:</h3>
       <label for="intro"></label>
       <textarea
@@ -51,82 +43,78 @@
         placeholder="Enter introduction"
       ></textarea>
     </div>
-    <br />
 
-    <label for="emoticon">How do you feel as you think about this?:</label>
+    <div class="form-group">
+      <label for="emoticon">How do you feel as you think about this?:</label>
 
-    <select name="emoticonIntro" id="emoticon">
-           <option value="">--Please choose an option--</option>
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="neutral">neutral</option>
-      <option value="depressed">depressed</option>
-      <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
+      <select class="form-control" name="emoticonIntro" id="emoticon1">
+            <option value="">--Please choose an option--</option>
+        <option value="happy">happy</option>
+        <option value="sad">sad</option>
+        <option value="neutral">neutral</option>
+        <option value="depressed">depressed</option>
+        <option value="anxious">anxious</option>  
+        <option value="grinn">&#128512;</option>
+        <option value="grinn2">&#128513;</option>
+        <option value="joytears ">&#128514;</option>
+        <option value="smile">&#128515;</option>
+        <option value="smileeyes ">&#128516;</option>
+        <option value="smilenervous ">&#128517;</option>
+        <option value="insinceresmile ">&#128518;</option>
+        <option value="smilehalo ">&#128519;</option>
+        <option value="devilsmile ">&#128520;</option>
+        <option value="wink ">&#128521;</option>
+        <option value="blush ">&#128522;</option>
+        <option value="yummyfood ">&#128523;</option>
+        <option value="relief ">&#128524;</option>
+        <option value="hearteyes ">&#128525;</option>
+        <option value="coolsmile ">&#128526;</option>
+        <option value="smirk ">&#128527;</option>
+        <option value="neutral">&#128528;</option>
+        <option value="expressionless ">&#128529;</option>
+        <option value="unamused ">&#128530;</option>
+        <option value="coldsweat ">&#128531;</option>
+        <option value="pensive">&#128532;</option>
+        <option value="confused ">&#128533;</option>
+        <option value="confused ">&#128534;</option>
+        <option value="kiss ">&#128535;</option>
+        <option value="throwkiss ">&#128536;</option>
+        <option value="kissingsmile ">&#128537;</option>
+        <option value="tenderkiss ">&#128538;</option>
+        <option value="silly ">&#128539;</option>
+        <option value="silly2 ">&#128540;</option>
+        <option value=" supersilly">&#128541;</option>
+        <option value="disappointed ">&#128542;</option>
+        <option value="worried">&#128543;</option>
+        <option value="angry">&#128544;</option>
+        <option value="pouting">&#128545;</option>
+        <option value="crying">&#128546;</option>
+        <option value="perservering">&#128547;</option>
+        <option value="triumph">&#128548;</option>
+        <option value="reliefdissapointment">&#128549;</option>
+        <option value=" frown">&#128550;</option>
+        <option value="anguish">&#128551;</option>
+        <option value="fearful">&#128552;</option>
+        <option value="weary">&#128553;</option>
+        <option value="sleepy">&#128554;</option>
+        <option value="tired">&#128555;</option>
+        <option value="grimace">&#128556;</option>
+        <option value="anger">&#128557;</option>
+        <option value="shock">&#128558;</option>
+        <option value="hush">&#128559;</option>
+        <option value="fearfulface">&#128560;</option>
+        <option value="terror">&#128561;</option>
+        <option value="astonishment">&#128562;</option>
+        <option value=" flushed">&#128563;</option>
+        <option value="flushed2">&#128564;</option>
+        <option value="sleeping">&#128565;</option>
+        <option value="dizzy">&#128566;</option>
+        <option value="mask">&#128567;</option>
+      </select>
+    </div>
 
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-    </select>
-
-    <br />
-
-    <div>
+    <div class="form-group">
       <h3>Context:</h3>
-
       <label for="context"></label>
       <textarea
         name="context"
@@ -136,79 +124,78 @@
         placeholder="Enter context"
       ></textarea>
     </div>
-    <br />
 
+
+    <div class="form-group">
     <label for="emoticon">How do you feel as you fill out this field?:</label>
 
-    <select name="emoticonContext" id="emoticon">
-        <option value="">--Please choose an option--</option>
+    <select class="form-control" name="emoticonContext" id="emoticon2">
+      <option value="">--Please choose an option--</option>
       <option value="happy">happy</option>
       <option value="sad">sad</option>
       <option value="neutral">neutral</option>
       <option value="depressed">depressed</option>
       <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
+      <option value="grinn">&#128512;</option>
+      <option value="grinn2">&#128513;</option>
+      <option value="joytears ">&#128514;</option>
+      <option value="smile">&#128515;</option>
+      <option value="smileeyes ">&#128516;</option>
+      <option value="smilenervous ">&#128517;</option>
+      <option value="insinceresmile ">&#128518;</option>
+      <option value="smilehalo ">&#128519;</option>
+      <option value="devilsmile ">&#128520;</option>
+      <option value="wink ">&#128521;</option>
+      <option value="blush ">&#128522;</option>
+      <option value="yummyfood ">&#128523;</option>
+      <option value="relief ">&#128524;</option>
+      <option value="hearteyes ">&#128525;</option>
+      <option value="coolsmile ">&#128526;</option>
+      <option value="smirk ">&#128527;</option>
+      <option value="neutral">&#128528;</option>
+      <option value="expressionless ">&#128529;</option>
+      <option value="unamused ">&#128530;</option>
+      <option value="coldsweat ">&#128531;</option>
+      <option value="pensive">&#128532;</option>
+      <option value="confused ">&#128533;</option>
+      <option value="confused ">&#128534;</option>
+      <option value="kiss ">&#128535;</option>
+      <option value="throwkiss ">&#128536;</option>
+      <option value="kissingsmile ">&#128537;</option>
+      <option value="tenderkiss ">&#128538;</option>
+      <option value="silly ">&#128539;</option>
+      <option value="silly2 ">&#128540;</option>
+      <option value=" supersilly">&#128541;</option>
+      <option value="disappointed ">&#128542;</option>
+      <option value="worried">&#128543;</option>
+      <option value="angry">&#128544;</option>
+      <option value="pouting">&#128545;</option>
+      <option value="crying">&#128546;</option>
+      <option value="perservering">&#128547;</option>
+      <option value="triumph">&#128548;</option>
+      <option value="reliefdissapointment">&#128549;</option>
+      <option value=" frown">&#128550;</option>
+      <option value="anguish">&#128551;</option>
+      <option value="fearful">&#128552;</option>
+      <option value="weary">&#128553;</option>
+      <option value="sleepy">&#128554;</option>
+      <option value="tired">&#128555;</option>
+      <option value="grimace">&#128556;</option>
+      <option value="anger">&#128557;</option>
+      <option value="shock">&#128558;</option>
+      <option value="hush">&#128559;</option>
+      <option value="fearfulface">&#128560;</option>
+      <option value="terror">&#128561;</option>
+      <option value="astonishment">&#128562;</option>
+      <option value=" flushed">&#128563;</option>
+      <option value="flushed2">&#128564;</option>
+      <option value="sleeping">&#128565;</option>
+      <option value="dizzy">&#128566;</option>
+      <option value="mask">&#128567;</option>
+      </select>
+    </div>
 
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-
-    <br />
-
-    <div>
+    <div class="form-group">
       <h3>Emotional Climax:</h3>
       <label for="climax"></label>
       <textarea
@@ -219,247 +206,234 @@
         placeholder="What was the high point of emotional intensity? Describe it in as much detail as possible. "
       ></textarea>
     </div>
-    <br />
+    <div class="form-group">
     <label for="emoticon">How do you feel as you fill out this field?:</label>
-    <select name="emoticonClimax" id="emoticon">
-        <option value="">--Please choose an option--</option>
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="neutral">neutral</option>
-      <option value="depressed">depressed</option>
-      <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
-
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-
-    <br />
-
-    <br />
-    <br />
-
-    <div>
-      <h3>Plan for acceptance:</h3>
-      <label for="acceptance"></label>
-      <textarea
-        name="aceptance"
-        id="aceptance"
-        rows="10"
-        cols="50"
-        placeholder="Enter how you plan to get to acceptance."
-      ></textarea>
-    </div>
-    <br />
-    <br />
-    <label for="emoticon">How do you feel as you fill out this field?:</label>
-
-    <select name="emoticon" id="emoticon">
-        <option value="">--Please choose an option--</option>
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="neutral">neutral</option>
-      <option value="depressed">depressed</option>
-      <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
-
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-    <br /><br />
-
-    <br />
-    <div>
-      <textarea
-        for="conclusion"
-        id="conclusion"
-        rows="7"
-        cols="50"
-        placeholder="Enter concluding thoughts."
-      ></textarea>
-    </div>
-
-    <br />
-    <label for="emoticon">How do you feel as you fill out this field?:</label>
-
-    <select name="emoticon" id="emoticon">
+    <select class="form-control" name="emoticonClimax" id="emoticon3">
       <option value="">--Please choose an option--</option>
       <option value="happy">happy</option>
       <option value="sad">sad</option>
       <option value="neutral">neutral</option>
       <option value="depressed">depressed</option>
       <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
+      <option value="grinn"> &#128512 </option>
+      <option value="grinn2">&#128513;</option>
+      <option value="joytears ">&#128514;</option>
+      <option value="smile">&#128515;</option>
+      <option value="smileeyes ">&#128516;</option>
+      <option value="smilenervous ">&#128517;</option>
+      <option value="insinceresmile ">&#128518;</option>
+      <option value="smilehalo ">&#128519;</option>
+      <option value="devilsmile ">&#128520;</option>
+      <option value="wink ">&#128521;</option>
+      <option value="blush ">&#128522;</option>
+      <option value="yummyfood ">&#128523;</option>
+      <option value="relief ">&#128524;</option>
+      <option value="hearteyes ">&#128525;</option>
+      <option value="coolsmile ">&#128526;</option>
+      <option value="smirk ">&#128527;</option>
+      <option value="neutral">&#128528;</option>
+      <option value="expressionless ">&#128529;</option>
+      <option value="unamused ">&#128530;</option>
+      <option value="coldsweat ">&#128531;</option>
+      <option value="pensive">&#128532;</option>
+      <option value="confused ">&#128533;</option>
+      <option value="confused ">&#128534;</option>
+      <option value="kiss ">&#128535;</option>
+      <option value="throwkiss ">&#128536;</option>
+      <option value="kissingsmile ">&#128537;</option>
+      <option value="tenderkiss ">&#128538;</option>
+      <option value="silly ">&#128539;</option>
+      <option value="silly2 ">&#128540;</option>
+      <option value=" supersilly">&#128541;</option>
+      <option value="disappointed ">&#128542;</option>
+      <option value="worried">&#128543;</option>
+      <option value="angry">&#128544;</option>
+      <option value="pouting">&#128545;</option>
+      <option value="crying">&#128546;</option>
+      <option value="perservering">&#128547;</option>
+      <option value="triumph">&#128548;</option>
+      <option value="reliefdissapointment">&#128549;</option>
+      <option value=" frown">&#128550;</option>
+      <option value="anguish">&#128551;</option>
+      <option value="fearful">&#128552;</option>
+      <option value="weary">&#128553;</option>
+      <option value="sleepy">&#128554;</option>
+      <option value="tired">&#128555;</option>
+      <option value="grimace">&#128556;</option>
+      <option value="anger">&#128557;</option>
+      <option value="shock">&#128558;</option>
+      <option value="hush">&#128559;</option>
+      <option value="fearfulface">&#128560;</option>
+      <option value="terror">&#128561;</option>
+      <option value="astonishment">&#128562;</option>
+      <option value=" flushed">&#128563;</option>
+      <option value="flushed2">&#128564;</option>
+      <option value="sleeping">&#128565;</option>
+      <option value="dizzy">&#128566;</option>
+      <option value="mask">&#128567;</option>
+      </select>
+    </div>
 
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
+    <div class="form-group">
+      <h3>Plan for acceptance:</h3>
+      <label for="acceptance"></label>
+      <textarea
+        name="acceptance"
+        id="acceptance"
+        rows="10"
+        cols="50"
+        placeholder="Enter how you plan to get to acceptance."
+      ></textarea>
+    </div>
 
+    <div class="form-group">
+    <label for="emoticon">How do you feel as you fill out this field?:</label>
 
+    <select class="form-control" name="emoticonAcceptance" id="emoticon4">
+      <option value="">--Please choose an option--</option>
+      <option value="happy">happy</option>
+      <option value="sad">sad</option>
+      <option value="neutral">neutral</option>
+      <option value="depressed">depressed</option>
+      <option value="anxious">anxious</option>
+      <option value="grinn">&#128512;</option>
+      <option value="grinn2">&#128513;</option>
+      <option value="joytears ">&#128514;</option>
+      <option value="smile">&#128515;</option>
+      <option value="smileeyes ">&#128516;</option>
+      <option value="smilenervous ">&#128517;</option>
+      <option value="insinceresmile ">&#128518;</option>
+      <option value="smilehalo ">&#128519;</option>
+      <option value="devilsmile ">&#128520;</option>
+      <option value="wink ">&#128521;</option>
+      <option value="blush ">&#128522;</option>
+      <option value="yummyfood ">&#128523;</option>
+      <option value="relief ">&#128524;</option>
+      <option value="hearteyes ">&#128525;</option>
+      <option value="coolsmile ">&#128526;</option>
+      <option value="smirk ">&#128527;</option>
+      <option value="neutral">&#128528;</option>
+      <option value="expressionless ">&#128529;</option>
+      <option value="unamused ">&#128530;</option>
+      <option value="coldsweat ">&#128531;</option>
 
- </select>
+      <option value="pensive">&#128532;</option>
+      <option value="confused ">&#128533;</option>
+      <option value="confused ">&#128534;</option>
+      <option value="kiss ">&#128535;</option>
+      <option value="throwkiss ">&#128536;</option>
+      <option value="kissingsmile ">&#128537;</option>
+      <option value="tenderkiss ">&#128538;</option>
+      <option value="silly ">&#128539;</option>
+      <option value="silly2 ">&#128540;</option>
+      <option value=" supersilly">&#128541;</option>
+      <option value="disappointed ">&#128542;</option>
+      <option value="worried">&#128543;</option>
+      <option value="angry">&#128544;</option>
+      <option value="pouting">&#128545;</option>
+      <option value="crying">&#128546;</option>
+      <option value="perservering">&#128547;</option>
+      <option value="triumph">&#128548;</option>
+      <option value="reliefdissapointment">&#128549;</option>
+      <option value=" frown">&#128550;</option>
+      <option value="anguish">&#128551;</option>
+      <option value="fearful">&#128552;</option>
+      <option value="weary">&#128553;</option>
+      <option value="sleepy">&#128554;</option>
+      <option value="tired">&#128555;</option>
+      <option value="grimace">&#128556;</option>
+      <option value="anger">&#128557;</option>
+      <option value="shock">&#128558;</option>
+      <option value="hush">&#128559;</option>
+      <option value="fearfulface">&#128560;</option>
+      <option value="terror">&#128561;</option>
+      <option value="astonishment">&#128562;</option>
+      <option value=" flushed">&#128563;</option>
+      <option value="flushed2">&#128564;</option>
+      <option value="sleeping">&#128565;</option>
+      <option value="dizzy">&#128566;</option>
+      <option value="mask">&#128567;</option>
+    </select>
+  </div>
+    <div>
+      <textarea
+        for="conclusion"
+        id="conclusion"
+        rows="7"
+        cols="50"
+        name="conclusion"
+        placeholder="Enter concluding thoughts."
+      ></textarea>
+    </div>
+    <div class="form-group">
+    <label for="emoticon">How do you feel as you fill out this field?:</label>
 
-    <br /><br />
-    <button>Add Entry</button>
+    <select class="form-control" name="emoticonConclusion" id="emoticonConclusion">
+      <option value="">--Please choose an option--</option>
+      <option value="happy">happy</option>
+      <option value="sad">sad</option>
+      <option value="neutral">neutral</option>
+      <option value="depressed">depressed</option>
+      <option value="anxious">anxious</option>
+      <option value="grinn">&#128512 </option>
+      <option value="grinn2">&#128513;</option>
+      <option value="joytears ">&#128514;</option>
+      <option value="smile">&#128515;</option>
+      <option value="smileeyes ">&#128516;</option>
+      <option value="smilenervous ">&#128517;</option>
+      <option value="insinceresmile ">&#128518;</option>
+      <option value="smilehalo ">&#128519;</option>
+      <option value="devilsmile ">&#128520;</option>
+      <option value="wink ">&#128521;</option>
+      <option value="blush ">&#128522;</option>
+      <option value="yummyfood ">&#128523;</option>
+      <option value="relief ">&#128524;</option>
+      <option value="hearteyes ">&#128525;</option>
+      <option value="coolsmile ">&#128526;</option>
+      <option value="smirk ">&#128527;</option>
+      <option value="neutral">&#128528;</option>
+      <option value="expressionless ">&#128529;</option>
+      <option value="unamused ">&#128530;</option>
+      <option value="coldsweat ">&#128531;</option>
+      <option value="pensive">&#128532;</option>
+      <option value="confused ">&#128533;</option>
+      <option value="confused ">&#128534;</option>
+      <option value="kiss ">&#128535;</option>
+      <option value="throwkiss ">&#128536;</option>
+      <option value="kissingsmile ">&#128537;</option>
+      <option value="tenderkiss ">&#128538;</option>
+      <option value="silly ">&#128539;</option>
+      <option value="silly2 ">&#128540;</option>
+      <option value=" supersilly">&#128541;</option>
+      <option value="disappointed ">&#128542;</option>
+      <option value="worried">&#128543;</option>
+      <option value="angry">&#128544;</option>
+      <option value="pouting">&#128545;</option>
+      <option value="crying">&#128546;</option>
+      <option value="perservering">&#128547;</option>
+      <option value="triumph">&#128548;</option>
+      <option value="reliefdissapointment">&#128549;</option>
+      <option value=" frown">&#128550;</option>
+      <option value="anguish">&#128551;</option>
+      <option value="fearful">&#128552;</option>
+      <option value="weary">&#128553;</option>
+      <option value="sleepy">&#128554;</option>
+      <option value="tired">&#128555;</option>
+      <option value="grimace">&#128556;</option>
+      <option value="anger">&#128557;</option>
+      <option value="shock">&#128558;</option>
+      <option value="hush">&#128559;</option>
+      <option value="fearfulface">&#128560;</option>
+      <option value="terror">&#128561;</option>
+      <option value="astonishment">&#128562;</option>
+      <option value=" flushed">&#128563;</option>
+      <option value="flushed2">&#128564;</option>
+      <option value="sleeping">&#128565;</option>
+      <option value="dizzy">&#128566;</option>
+      <option value="mask">&#128567;</option>
+    </select>
+    </div>
+    <button class="btn btn-primary">Add Entry</button>
   </fieldset>
 </form>
 

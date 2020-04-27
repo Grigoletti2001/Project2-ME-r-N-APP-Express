@@ -31,7 +31,6 @@ router.get("/new", requireAuth, (req, res) => {
   });
 });
 
-
 //journal page. make sure it matches show not index.ejs
 
 router.get("/:id", async (req, res, next) => {
@@ -55,23 +54,41 @@ router.get("/:id", async (req, res, next) => {
 router.use(requireAuth);
 
 // journals /journals -- journal create route
-router.post("/", async (req, res, next) => {
+router.post("/", requireAuth, async (req, res, next) => {
   try {
+    console.log(req.body);
+    const {
+      title,
+      intro,
+      emoticonIntro,
+      context,
+      emoticonContext,
+      climax,
+      emoticonClimax,
+      acceptance,
+      emoticonAcceptance,
+      conclusion,
+      emoticonConclusion
+    } = req.body;
     const entry = {
-      title: req.body.title,
+      title,
       //deleting date-info because doing it client side.
       user: req.session.userId,
-      intro: req.body.intro,
-      context: req.body.context,
-      climax: req.body.climax,
-      acceptance: req.body.acceptance,
-      conclusion: req.body.conclusion,
-      emotion: req.body.emoticon,
+      intro,
+      emoticonIntro,
+      context,
+      emoticonContext,
+      climax,
+      emoticonClimax,
+      acceptance,
+      conclusion,
+      emoticonAcceptance,
+      emoticonConclusion,
       date: Date.now()
     };
     const createdEntry = await Journal.create(entry);
-
-    req.session.message = `${createdEntry.name} successfully added.`;
+    console.log("createdEntry", createdEntry);
+    req.session.message = `${createdEntry.context} successfully added.`;
     res.redirect("/journals/" + createdEntry.id);
   } catch (err) {
     next(err);
@@ -79,7 +96,7 @@ router.post("/", async (req, res, next) => {
 });
 
 //edit route
-router.get("/:id/edit", async (req, res, next) => {
+router.get("/:id/edit", requireAuth, async (req, res, next) => {
   try {
     // query for the article
     const editJournal = await Journal.findById(req.params.id);
@@ -97,11 +114,11 @@ router.put("/:id", async (req, res, next) => {
   try {
     const updatedJournal = await Journal.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      ...req.body,
       { new: true }
     );
 
-    console.log("UPDATEEEEEEEEEE")
+    console.log("UPDATEEEEEEEEEE");
     // redirect back to article show page so user can see updates
     res.redirect("/journals/" + updatedJournal._id);
   } catch (err) {
@@ -110,13 +127,13 @@ router.put("/:id", async (req, res, next) => {
 });
 
 /// delete a journal
-router.delete('/:id', async (req, res, next) => {
-    try {
-        await Journal.findByIdAndRemove(req.params.id)
-        res.redirect('/journals')
-    } catch (err) {
-        next(err)
-    }
-})
+router.delete("/:id", async (req, res, next) => {
+  try {
+    await Journal.findByIdAndRemove(req.params.id);
+    res.redirect("/journals");
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

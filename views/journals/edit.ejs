@@ -1,216 +1,196 @@
-<%- include('../partials/header.ejs') %>
+<%- include('../partials/header.ejs') %> <%- include('./nav.ejs') %>
+<div class="container">
+  <div class="flex-container">
+    <h3>Edit journal entry</h3>
+    <form method="POST" action="/journals/<%= journal.id %>?_method=PUT">
+      <input type="hidden" name="_method" value="PUT" />
+      <fieldset>
+      <legend>Enter a new journal emotional event here</legend>
 
-<%- include('./nav.ejs') %>
- <div class="box">
-   <div class="flex-container">
+      <div class="form-group row">
+        <label for="title" class="col-sm-2 col-form-label">Title for Journal Entry</label>
+        <div class="col-sm-10">
+          <textarea
+            class="form-control"
+            name="title"
+            id="title"
+            rows="3"
+            cols="50"
+            placeholder="Enter introduction"
+          >
+          <%= journal.title %> 
+        </textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <h2>Date & time</h2>
+        <p><span id="datetime"></span></p>
 
-<H3> Edit journal entry </H3>
-
- <form method="POST" action="/journals/<%= journal.id %>?_method=PUT">
-
-  <input type="hidden" name="_method" value="PUT">
-
-  <fieldset>
-    <legend>Enter a new journal emotional event here</legend>
-    <h2>Title for Journal Entry</h2>
-    <br />
-    <div>
-      <label for="title"></label>
-      <textarea
-        name="title"
-        id="title"
-        rows="3"
-        cols="50"
-        placeholder="Enter introduction"
-      >
-      <%= journal.title %> 
-    </textarea>
-    </div>
-
-    <br />
-    <div>
-      <h2>Date & time</h2>
-      <p><span id="datetime"></span></p>
-
-      <script>
-        let dt = new Date();
-        document.getElementById("datetime").innerHTML = dt.toLocaleString();
-      </script>
-    </div>
-
-    <br />
-
-    <div>
-      <h3>Introduction:</h3>
-      <label for="intro"></label>
-      <textarea
-        name="intro"
-        id="intro"
-        rows="4"
-        cols="50"
-        placeholder="Enter introduction"
-      >
-    <%= journal.intro %> 
-    </textarea>
-    </div>
-    <br />
-
-    <label for="emoticon">How do you feel as you think about this?:</label>
-
-    <select name="emoticonIntro" id="emoticon">
-           <option value="">--Please choose an option--</option>
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="neutral">neutral</option>
-      <option value="depressed">depressed</option>
-      <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
-
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-    </select>
-
-    <br />
-
-    <div>
+        <script>
+          let dt = new Date();
+          document.getElementById("datetime").innerHTML = dt.toLocaleString();
+        </script>
+      </div>
+      <div class="form-group row">
+        <h3>Introduction:</h3>
+        <label for="intro"></label>
+        <textarea
+          class="form-control"
+          name="intro"
+          id="intro"
+          rows="4"
+          cols="50"
+          placeholder="Enter introduction"
+        >
+          <%= journal.intro %> 
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="emoticon">How do you feel as you think about this?:</label>
+        <select class="form-control" name="emoticonIntro" id="emoticon">
+          <option value="happy" "<%= (journal.emoticonIntro == "happy")?'selected':'' %>>happy</option>
+          <option value="sad" <%= (journal.emoticonIntro == "sad")?'selected':'' %>>sad</option>
+          <option value="neutral" <%= (journal.emoticonIntro == "neutral")?'selected':'' %>>neutral</option>
+          <option value="depressed" <%= (journal.emoticonIntro == "depressed")?'selected':'' %>>depressed</option>
+          <option value="anxious" <%= (journal.emoticonIntro == "anxious")?'selected':'' %>>anxious</option>
+          <option value="grinn" <%= (journal.emoticonIntro == "grinn")?'selected':'' %>&#128512;</option>
+          <option value="grinn2"  <%= (journal.emoticonIntro == "grinn2")?'selected':'' %>&#128513;</option>
+          <option value="joytears " <%= (journal.emoticonIntro == "joytears")?'selected':'' %>&#128514;</option>
+          <option value="smile" <%= (journal.emoticonIntro == "smile")?'selected':'' %>&#128515;</option>
+          <option value="smileeyes " <%= (journal.emoticonIntro == "smileeyes")?'selected':'' %>&#128516;</option>
+          <option value="smilenervous " <%= (journal.emoticonIntro == "smilenervous")?'selected':'' %>&#128517;</option>
+          <option value="insinceresmile " <%= (journal.emoticonIntro == "insinceresmile")?'selected':'' %>&#128518;</option>
+          <option value="smilehalo " <%= (journal.emoticonIntro == "smilehalo")?'selected':'' %>&#128519;</option>
+          <option value="devilsmile " <%= (journal.emoticonIntro == "devilsmile")?'selected':'' %>&#128520;</option>
+          <option value="wink " <%= (journal.emoticonIntro == "wink")?'selected':'' %>&#128521;</option>
+          <option value="blush " <%= (journal.emoticonIntro == "blush")?'selected':'' %>&#128522;</option>
+          <option value="yummyfood " <%= (journal.emoticonIntro == "yummyfood")?'selected':'' %>&#128523;</option>
+          <option value="relief " <%= (journal.emoticonIntro == "relief")?'selected':'' %>&#128524;</option>
+          <option value="hearteyes " <%= (journal.emoticonIntro == "hearteyes")?'selected':'' %>&#128525;</option>
+          <option value="coolsmile " <%= (journal.emoticonIntro == "coolsmile")?'selected':'' %>&#128526;</option>
+          <option value="smirk " <%= (journal.emoticonIntro == "smirk")?'selected':'' %>&#128527;</option>
+          <option value="neutral" <%= (journal.emoticonIntro == "neutral")?'selected':'' %>&#128528;</option>
+          <option value="expressionless " <%= (journal.emoticonIntro == "expressionless")?'selected':'' %>&#128529;</option>
+          <option value="unamused " <%= (journal.emoticonIntro == "unamused")?'selected':'' %>&#128530;</option>
+          <option value="coldsweat " <%= (journal.emoticonIntro == "coldsweat")?'selected':'' %>&#128531;</option>
+          <option value="pensive" <%= (journal.emoticonIntro == "pensive")?'selected':'' %>&#128532;</option>
+          <option value="confused " <%= (journal.emoticonIntro == "confused")?'selected':'' %>&#128534;</option>
+          <option value="kiss " <%= (journal.emoticonIntro == "kiss")?'selected':'' %>&#128535;</option>
+          <option value="throwkiss " <%= (journal.emoticonIntro == "throwkiss")?'selected':'' %>&#128536;</option>
+          <option value="kissingsmile " <%= (journal.emoticonIntro == "kissingsmile")?'selected':'' %>&#128537;</option>
+          <option value="tenderkiss " <%= (journal.emoticonIntro == "tenderkiss")?'selected':'' %>&#128538;</option>
+          <option value="silly " <%= (journal.emoticonIntro == "silly")?'selected':'' %>&#128539;</option>
+          <option value="silly2 " <%= (journal.emoticonIntro == "silly2")?'selected':'' %>&#128540;</option>
+          <option value=" supersilly" <%= (journal.emoticonIntro == "supersilly")?'selected':'' %>&#128541;</option>
+          <option value="disappointed " <%= (journal.emoticonIntro == "disappointed")?'selected':'' %>&#128542;</option>
+          <option value="worried" <%= (journal.emoticonIntro == "worried")?'selected':'' %>&#128543;</option>
+          <option value="angry" <%= (journal.emoticonIntro == "angry")?'selected':'' %>&#128544;</option>
+          <option value="pouting" <%= (journal.emoticonIntro == "pouting")?'selected':'' %>&#128545;</option>
+          <option value="crying" <%= (journal.emoticonIntro == "crying")?'selected':'' %>&#128546;</option>
+          <option value="perservering" <%= (journal.emoticonIntro == "perservering")?'selected':'' %>&#128547;</option>
+          <option value="triumph" <%= (journal.emoticonIntro == "triumph")?'selected':'' %>&#128548;</option>
+          <option value="reliefdissapointment" <%= (journal.emoticonIntro == "reliefdissapointment")?'selected':'' %>&#128549;</option>
+          <option value=" frown" <%= (journal.emoticonIntro == "frown")?'selected':'' %>&#128550;</option>
+          <option value="anguish" <%= (journal.emoticonIntro == "anguish")?'selected':'' %>&#128551;</option>
+          <option value="fearful" <%= (journal.emoticonIntro == "fearful")?'selected':'' %>&#128552;</option>
+          <option value="weary" <%= (journal.emoticonIntro == "weary")?'selected':'' %>&#128553;</option>
+          <option value="sleepy" <%= (journal.emoticonIntro == "sleepy")?'selected':'' %>&#128554;</option>
+          <option value="tired" <%= (journal.emoticonIntro == "tired")?'selected':'' %>&#128555;</option>
+          <option value="grimace" <%= (journal.emoticonIntro == "grimace")?'selected':'' %>&#128556;</option>
+          <option value="anger" <%= (journal.emoticonIntro == "anger")?'selected':'' %>&#128557;</option>
+          <option value="shock" <%= (journal.emoticonIntro == "shock")?'selected':'' %>&#128558;</option>
+          <option value="hush" <%= (journal.emoticonIntro == "hush")?'selected':'' %>&#128559;</option>
+          <option value="fearfulface" <%= (journal.emoticonIntro == "fearfulface")?'selected':'' %>&#128560;</option>
+          <option value="terror" <%= (journal.emoticonIntro == "terror")?'selected':'' %>&#128561;</option>
+          <option value="astonishment" <%= (journal.emoticonIntro == "astonishment")?'selected':'' %>&#128562;</option>
+          <option value=" flushed" <%= (journal.emoticonIntro == "flushed")?'selected':'' %>&#128563;</option>
+          <option value="flushed2" <%= (journal.emoticonIntro == "flushed2")?'selected':'' %>&#128564;</option>
+          <option value="sleeping" <%= (journal.emoticonIntro == "sleeping")?'selected':'' %>&#128565;</option>
+          <option value="dizzy" <%= (journal.emoticonIntro == "dizzy")?'selected':'' %>&#128566;</option>
+          <option value="mask" <%= (journal.emoticonIntro == "mask")?'selected':'' %>&#128567;</option>
+        </select>
+      </div>
+    <div class="form-group">
       <h3>Context:</h3>
-
       <label for="context"></label>
       <textarea
+        class="form-control"
         name="context"
         id="context"
         rows="4"
         cols="50"
         placeholder="Enter context"
-      ></textarea>
+      >
+      <%= journal.context %>
+      </textarea>
     </div>
-    <br />
 
+    <div class="form-group">
     <label for="emoticon">How do you feel as you fill out this field?:</label>
-
-    <select name="emoticonContext" id="emoticon">
-        <option value="">--Please choose an option--</option>
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="neutral">neutral</option>
-      <option value="depressed">depressed</option>
-      <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
-
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-
-    <br />
-
-    <div>
+    <select class="form-control" name="emoticonContext" id="emoticon">
+      <option value="happy" "<%= (journal.emoticonContext == "happy")?'selected':'' %>>happy</option>
+      <option value="sad" <%= (journal.emoticonContext == "sad")?'selected':'' %>>sad</option>
+      <option value="neutral" <%= (journal.emoticonContext == "neutral")?'selected':'' %>>neutral</option>
+      <option value="depressed" <%= (journal.emoticonContext == "depressed")?'selected':'' %>>depressed</option>
+      <option value="anxious" <%= (journal.emoticonContext == "anxious")?'selected':'' %>>anxious</option>
+      <option value="grinn" <%= (journal.emoticonContext == "grinn")?'selected':'' %>&#128512;</option>
+      <option value="grinn2"  <%= (journal.emoticonContext == "grinn2")?'selected':'' %>&#128513;</option>
+      <option value="joytears " <%= (journal.emoticonContext == "joytears")?'selected':'' %>&#128514;</option>
+      <option value="smile" <%= (journal.emoticonContext == "smile")?'selected':'' %>&#128515;</option>
+      <option value="smileeyes " <%= (journal.emoticonContext == "smileeyes")?'selected':'' %>&#128516;</option>
+      <option value="smilenervous " <%= (journal.emoticonContext == "smilenervous")?'selected':'' %>&#128517;</option>
+      <option value="insinceresmile " <%= (journal.emoticonContext == "insinceresmile")?'selected':'' %>&#128518;</option>
+      <option value="smilehalo " <%= (journal.emoticonContext == "smilehalo")?'selected':'' %>&#128519;</option>
+      <option value="devilsmile " <%= (journal.emoticonContext == "devilsmile")?'selected':'' %>&#128520;</option>
+      <option value="wink " <%= (journal.emoticonContext == "wink")?'selected':'' %>&#128521;</option>
+      <option value="blush " <%= (journal.emoticonContext == "blush")?'selected':'' %>&#128522;</option>
+      <option value="yummyfood " <%= (journal.emoticonContext == "yummyfood")?'selected':'' %>&#128523;</option>
+      <option value="relief " <%= (journal.emoticonContext == "relief")?'selected':'' %>&#128524;</option>
+      <option value="hearteyes " <%= (journal.emoticonContext == "hearteyes")?'selected':'' %>&#128525;</option>
+      <option value="coolsmile " <%= (journal.emoticonContext == "coolsmile")?'selected':'' %>&#128526;</option>
+      <option value="smirk " <%= (journal.emoticonContext == "smirk")?'selected':'' %>&#128527;</option>
+      <option value="neutral" <%= (journal.emoticonContext == "neutral")?'selected':'' %>&#128528;</option>
+      <option value="expressionless " <%= (journal.emoticonContext == "expressionless")?'selected':'' %>&#128529;</option>
+      <option value="unamused " <%= (journal.emoticonContext == "unamused")?'selected':'' %>&#128530;</option>
+      <option value="coldsweat " <%= (journal.emoticonContext == "coldsweat")?'selected':'' %>&#128531;</option>
+      <option value="pensive" <%= (journal.emoticonContext == "pensive")?'selected':'' %>&#128532;</option>
+      <option value="confused " <%= (journal.emoticonContext == "confused")?'selected':'' %>&#128534;</option>
+      <option value="kiss " <%= (journal.emoticonContext == "kiss")?'selected':'' %>&#128535;</option>
+      <option value="throwkiss " <%= (journal.emoticonContext == "throwkiss")?'selected':'' %>&#128536;</option>
+      <option value="kissingsmile " <%= (journal.emoticonContext == "kissingsmile")?'selected':'' %>&#128537;</option>
+      <option value="tenderkiss " <%= (journal.emoticonContext == "tenderkiss")?'selected':'' %>&#128538;</option>
+      <option value="silly " <%= (journal.emoticonContext == "silly")?'selected':'' %>&#128539;</option>
+      <option value="silly2 " <%= (journal.emoticonContext == "silly2")?'selected':'' %>&#128540;</option>
+      <option value=" supersilly" <%= (journal.emoticonContext == "supersilly")?'selected':'' %>&#128541;</option>
+      <option value="disappointed " <%= (journal.emoticonContext == "disappointed")?'selected':'' %>&#128542;</option>
+      <option value="worried" <%= (journal.emoticonContext == "worried")?'selected':'' %>&#128543;</option>
+      <option value="angry" <%= (journal.emoticonContext == "angry")?'selected':'' %>&#128544;</option>
+      <option value="pouting" <%= (journal.emoticonContext == "pouting")?'selected':'' %>&#128545;</option>
+      <option value="crying" <%= (journal.emoticonContext == "crying")?'selected':'' %>&#128546;</option>
+      <option value="perservering" <%= (journal.emoticonContext == "perservering")?'selected':'' %>&#128547;</option>
+      <option value="triumph" <%= (journal.emoticonContext == "triumph")?'selected':'' %>&#128548;</option>
+      <option value="reliefdissapointment" <%= (journal.emoticonContext == "reliefdissapointment")?'selected':'' %>&#128549;</option>
+      <option value=" frown" <%= (journal.emoticonContext == "frown")?'selected':'' %>&#128550;</option>
+      <option value="anguish" <%= (journal.emoticonContext == "anguish")?'selected':'' %>&#128551;</option>
+      <option value="fearful" <%= (journal.emoticonContext == "fearful")?'selected':'' %>&#128552;</option>
+      <option value="weary" <%= (journal.emoticonContext == "weary")?'selected':'' %>&#128553;</option>
+      <option value="sleepy" <%= (journal.emoticonContext == "sleepy")?'selected':'' %>&#128554;</option>
+      <option value="tired" <%= (journal.emoticonContext == "tired")?'selected':'' %>&#128555;</option>
+      <option value="grimace" <%= (journal.emoticonContext == "grimace")?'selected':'' %>&#128556;</option>
+      <option value="anger" <%= (journal.emoticonContext == "anger")?'selected':'' %>&#128557;</option>
+      <option value="shock" <%= (journal.emoticonContext == "shock")?'selected':'' %>&#128558;</option>
+      <option value="hush" <%= (journal.emoticonContext == "hush")?'selected':'' %>&#128559;</option>
+      <option value="fearfulface" <%= (journal.emoticonContext == "fearfulface")?'selected':'' %>&#128560;</option>
+      <option value="terror" <%= (journal.emoticonContext == "terror")?'selected':'' %>&#128561;</option>
+      <option value="astonishment" <%= (journal.emoticonContext == "astonishment")?'selected':'' %>&#128562;</option>
+      <option value=" flushed" <%= (journal.emoticonContext == "flushed")?'selected':'' %>&#128563;</option>
+      <option value="flushed2" <%= (journal.emoticonContext == "flushed2")?'selected':'' %>&#128564;</option>
+      <option value="sleeping" <%= (journal.emoticonContext == "sleeping")?'selected':'' %>&#128565;</option>
+      <option value="dizzy" <%= (journal.emoticonContext == "dizzy")?'selected':'' %>&#128566;</option>
+      <option value="mask" <%= (journal.emoticonContext == "mask")?'selected':'' %>&#128567;</option>
+      </select>
+    </div>
+    <div class="form-group">
       <h3>Emotional Climax:</h3>
       <label for="climax"></label>
       <textarea
@@ -219,254 +199,240 @@
         rows="7"
         cols="50"
         placeholder="What was the high point of emotional intensity? Describe it in as much detail as possible. "
-      ></textarea>
+      >
+        <%= journal.climax %>
+      </textarea>
     </div>
-    <br />
+    <div class="form-group">
     <label for="emoticon">How do you feel as you fill out this field?:</label>
-    <select name="emoticonClimax" id="emoticon">
-        <option value="">--Please choose an option--</option>
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="neutral">neutral</option>
-      <option value="depressed">depressed</option>
-      <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
-
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-
-    <br />
-
-    <br />
-    <br />
-
-    <div>
+    <select class="form-control" name="emoticonClimax" id="emoticon">
+      <option value="">--Please choose an option--</option>
+      <option value="happy" "<%= (journal.emoticonClimax == "happy")?'selected':'' %>>happy</option>
+      <option value="sad" <%= (journal.emoticonClimax == "sad")?'selected':'' %>>sad</option>
+      <option value="neutral" <%= (journal.emoticonClimax == "neutral")?'selected':'' %>>neutral</option>
+      <option value="depressed" <%= (journal.emoticonClimax == "depressed")?'selected':'' %>>depressed</option>
+      <option value="anxious" <%= (journal.emoticonClimax == "anxious")?'selected':'' %>>anxious</option>
+      <option value="grinn" <%= (journal.emoticonClimax == "grinn")?'selected':'' %>&#128512;</option>
+      <option value="grinn2"  <%= (journal.emoticonClimax == "grinn2")?'selected':'' %>&#128513;</option>
+      <option value="joytears " <%= (journal.emoticonClimax == "joytears")?'selected':'' %>&#128514;</option>
+      <option value="smile" <%= (journal.emoticonClimax == "smile")?'selected':'' %>&#128515;</option>
+      <option value="smileeyes " <%= (journal.emoticonClimax == "smileeyes")?'selected':'' %>&#128516;</option>
+      <option value="smilenervous " <%= (journal.emoticonClimax == "smilenervous")?'selected':'' %>&#128517;</option>
+      <option value="insinceresmile " <%= (journal.emoticonClimax == "insinceresmile")?'selected':'' %>&#128518;</option>
+      <option value="smilehalo " <%= (journal.emoticonClimax == "smilehalo")?'selected':'' %>&#128519;</option>
+      <option value="devilsmile " <%= (journal.emoticonClimax == "devilsmile")?'selected':'' %>&#128520;</option>
+      <option value="wink " <%= (journal.emoticonClimax == "wink")?'selected':'' %>&#128521;</option>
+      <option value="blush " <%= (journal.emoticonClimax == "blush")?'selected':'' %>&#128522;</option>
+      <option value="yummyfood " <%= (journal.emoticonClimax == "yummyfood")?'selected':'' %>&#128523;</option>
+      <option value="relief " <%= (journal.emoticonClimax == "relief")?'selected':'' %>&#128524;</option>
+      <option value="hearteyes " <%= (journal.emoticonClimax == "hearteyes")?'selected':'' %>&#128525;</option>
+      <option value="coolsmile " <%= (journal.emoticonClimax == "coolsmile")?'selected':'' %>&#128526;</option>
+      <option value="smirk " <%= (journal.emoticonClimax == "smirk")?'selected':'' %>&#128527;</option>
+      <option value="neutral" <%= (journal.emoticonClimax == "neutral")?'selected':'' %>&#128528;</option>
+      <option value="expressionless " <%= (journal.emoticonClimax == "expressionless")?'selected':'' %>&#128529;</option>
+      <option value="unamused " <%= (journal.emoticonClimax == "unamused")?'selected':'' %>&#128530;</option>
+      <option value="coldsweat " <%= (journal.emoticonClimax == "coldsweat")?'selected':'' %>&#128531;</option>
+      <option value="pensive" <%= (journal.emoticonClimax == "pensive")?'selected':'' %>&#128532;</option>
+      <option value="confused " <%= (journal.emoticonClimax == "confused")?'selected':'' %>&#128534;</option>
+      <option value="kiss " <%= (journal.emoticonClimax == "kiss")?'selected':'' %>&#128535;</option>
+      <option value="throwkiss " <%= (journal.emoticonClimax == "throwkiss")?'selected':'' %>&#128536;</option>
+      <option value="kissingsmile " <%= (journal.emoticonClimax == "kissingsmile")?'selected':'' %>&#128537;</option>
+      <option value="tenderkiss " <%= (journal.emoticonClimax == "tenderkiss")?'selected':'' %>&#128538;</option>
+      <option value="silly " <%= (journal.emoticonClimax == "silly")?'selected':'' %>&#128539;</option>
+      <option value="silly2 " <%= (journal.emoticonClimax == "silly2")?'selected':'' %>&#128540;</option>
+      <option value=" supersilly" <%= (journal.emoticonClimax == "supersilly")?'selected':'' %>&#128541;</option>
+      <option value="disappointed " <%= (journal.emoticonClimax == "disappointed")?'selected':'' %>&#128542;</option>
+      <option value="worried" <%= (journal.emoticonClimax == "worried")?'selected':'' %>&#128543;</option>
+      <option value="angry" <%= (journal.emoticonClimax == "angry")?'selected':'' %>&#128544;</option>
+      <option value="pouting" <%= (journal.emoticonClimax == "pouting")?'selected':'' %>&#128545;</option>
+      <option value="crying" <%= (journal.emoticonClimax == "crying")?'selected':'' %>&#128546;</option>
+      <option value="perservering" <%= (journal.emoticonClimax == "perservering")?'selected':'' %>&#128547;</option>
+      <option value="triumph" <%= (journal.emoticonClimax == "triumph")?'selected':'' %>&#128548;</option>
+      <option value="reliefdissapointment" <%= (journal.emoticonClimax == "reliefdissapointment")?'selected':'' %>&#128549;</option>
+      <option value=" frown" <%= (journal.emoticonClimax == "frown")?'selected':'' %>&#128550;</option>
+      <option value="anguish" <%= (journal.emoticonClimax == "anguish")?'selected':'' %>&#128551;</option>
+      <option value="fearful" <%= (journal.emoticonClimax == "fearful")?'selected':'' %>&#128552;</option>
+      <option value="weary" <%= (journal.emoticonClimax == "weary")?'selected':'' %>&#128553;</option>
+      <option value="sleepy" <%= (journal.emoticonClimax == "sleepy")?'selected':'' %>&#128554;</option>
+      <option value="tired" <%= (journal.emoticonClimax == "tired")?'selected':'' %>&#128555;</option>
+      <option value="grimace" <%= (journal.emoticonClimax == "grimace")?'selected':'' %>&#128556;</option>
+      <option value="anger" <%= (journal.emoticonClimax == "anger")?'selected':'' %>&#128557;</option>
+      <option value="shock" <%= (journal.emoticonClimax == "shock")?'selected':'' %>&#128558;</option>
+      <option value="hush" <%= (journal.emoticonClimax == "hush")?'selected':'' %>&#128559;</option>
+      <option value="fearfulface" <%= (journal.emoticonClimax == "fearfulface")?'selected':'' %>&#128560;</option>
+      <option value="terror" <%= (journal.emoticonClimax == "terror")?'selected':'' %>&#128561;</option>
+      <option value="astonishment" <%= (journal.emoticonClimax == "astonishment")?'selected':'' %>&#128562;</option>
+      <option value=" flushed" <%= (journal.emoticonClimax == "flushed")?'selected':'' %>&#128563;</option>
+      <option value="flushed2" <%= (journal.emoticonClimax == "flushed2")?'selected':'' %>&#128564;</option>
+      <option value="sleeping" <%= (journal.emoticonClimax == "sleeping")?'selected':'' %>&#128565;</option>
+      <option value="dizzy" <%= (journal.emoticonClimax == "dizzy")?'selected':'' %>&#128566;</option>
+      <option value="mask" <%= (journal.emoticonClimax == "mask")?'selected':'' %>&#128567;</option>
+      </select>
+    </div>
+    <div class="form-group">
       <h3>Plan for acceptance:</h3>
       <label for="acceptance"></label>
       <textarea
-        name="aceptance"
-        id="aceptance"
+        class="form-control"
+        name="acceptance"
+        id="acceptance"
         rows="10"
         cols="50"
         placeholder="Enter how you plan to get to acceptance."
-      ></textarea>
+      >
+      <%= journal.acceptance %>
+    </textarea>
     </div>
-    <br />
-    <br />
+    <div class="form-group">
     <label for="emoticon">How do you feel as you fill out this field?:</label>
 
-    <select name="emoticon" id="emoticon">
-        <option value="">--Please choose an option--</option>
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="neutral">neutral</option>
-      <option value="depressed">depressed</option>
-      <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
+    <select class="form-control" name="emoticonAcceptance" id="emoticonAcceptance">
+      <option value="">--Please choose an option--</option>
+      <option value="happy" "<%= (journal.emoticonAcceptance == "happy")?'selected':'' %>>happy</option>
+      <option value="sad" <%= (journal.emoticonAcceptance == "sad")?'selected':'' %>>sad</option>
+      <option value="neutral" <%= (journal.emoticonAcceptance == "neutral")?'selected':'' %>>neutral</option>
+      <option value="depressed" <%= (journal.emoticonAcceptance == "depressed")?'selected':'' %>>depressed</option>
+      <option value="anxious" <%= (journal.emoticonAcceptance == "anxious")?'selected':'' %>>anxious</option>
+      <option value="grinn" <%= (journal.emoticonAcceptance == "grinn")?'selected':'' %>&#128512;</option>
+      <option value="grinn2"  <%= (journal.emoticonAcceptance == "grinn2")?'selected':'' %>&#128513;</option>
+      <option value="joytears " <%= (journal.emoticonAcceptance == "joytears")?'selected':'' %>&#128514;</option>
+      <option value="smile" <%= (journal.emoticonAcceptance == "smile")?'selected':'' %>&#128515;</option>
+      <option value="smileeyes " <%= (journal.emoticonAcceptance == "smileeyes")?'selected':'' %>&#128516;</option>
+      <option value="smilenervous " <%= (journal.emoticonAcceptance == "smilenervous")?'selected':'' %>&#128517;</option>
+      <option value="insinceresmile " <%= (journal.emoticonAcceptance == "insinceresmile")?'selected':'' %>&#128518;</option>
+      <option value="smilehalo " <%= (journal.emoticonAcceptance == "smilehalo")?'selected':'' %>&#128519;</option>
+      <option value="devilsmile " <%= (journal.emoticonAcceptance == "devilsmile")?'selected':'' %>&#128520;</option>
+      <option value="wink " <%= (journal.emoticonAcceptance == "wink")?'selected':'' %>&#128521;</option>
+      <option value="blush " <%= (journal.emoticonAcceptance == "blush")?'selected':'' %>&#128522;</option>
+      <option value="yummyfood " <%= (journal.emoticonAcceptance == "yummyfood")?'selected':'' %>&#128523;</option>
+      <option value="relief " <%= (journal.emoticonAcceptance == "relief")?'selected':'' %>&#128524;</option>
+      <option value="hearteyes " <%= (journal.emoticonAcceptance == "hearteyes")?'selected':'' %>&#128525;</option>
+      <option value="coolsmile " <%= (journal.emoticonAcceptance == "coolsmile")?'selected':'' %>&#128526;</option>
+      <option value="smirk " <%= (journal.emoticonAcceptance == "smirk")?'selected':'' %>&#128527;</option>
+      <option value="neutral" <%= (journal.emoticonAcceptance == "neutral")?'selected':'' %>&#128528;</option>
+      <option value="expressionless " <%= (journal.emoticonAcceptance == "expressionless")?'selected':'' %>&#128529;</option>
+      <option value="unamused " <%= (journal.emoticonAcceptance == "unamused")?'selected':'' %>&#128530;</option>
+      <option value="coldsweat " <%= (journal.emoticonAcceptance == "coldsweat")?'selected':'' %>&#128531;</option>
+      <option value="pensive" <%= (journal.emoticonAcceptance == "pensive")?'selected':'' %>&#128532;</option>
+      <option value="confused " <%= (journal.emoticonAcceptance == "confused")?'selected':'' %>&#128534;</option>
+      <option value="kiss " <%= (journal.emoticonAcceptance == "kiss")?'selected':'' %>&#128535;</option>
+      <option value="throwkiss " <%= (journal.emoticonAcceptance == "throwkiss")?'selected':'' %>&#128536;</option>
+      <option value="kissingsmile " <%= (journal.emoticonAcceptance == "kissingsmile")?'selected':'' %>&#128537;</option>
+      <option value="tenderkiss " <%= (journal.emoticonAcceptance == "tenderkiss")?'selected':'' %>&#128538;</option>
+      <option value="silly " <%= (journal.emoticonAcceptance == "silly")?'selected':'' %>&#128539;</option>
+      <option value="silly2 " <%= (journal.emoticonAcceptance == "silly2")?'selected':'' %>&#128540;</option>
+      <option value=" supersilly" <%= (journal.emoticonAcceptance == "supersilly")?'selected':'' %>&#128541;</option>
+      <option value="disappointed " <%= (journal.emoticonAcceptance == "disappointed")?'selected':'' %>&#128542;</option>
+      <option value="worried" <%= (journal.emoticonAcceptance == "worried")?'selected':'' %>&#128543;</option>
+      <option value="angry" <%= (journal.emoticonAcceptance == "angry")?'selected':'' %>&#128544;</option>
+      <option value="pouting" <%= (journal.emoticonAcceptance == "pouting")?'selected':'' %>&#128545;</option>
+      <option value="crying" <%= (journal.emoticonAcceptance == "crying")?'selected':'' %>&#128546;</option>
+      <option value="perservering" <%= (journal.emoticonAcceptance == "perservering")?'selected':'' %>&#128547;</option>
+      <option value="triumph" <%= (journal.emoticonAcceptance == "triumph")?'selected':'' %>&#128548;</option>
+      <option value="reliefdissapointment" <%= (journal.emoticonAcceptance == "reliefdissapointment")?'selected':'' %>&#128549;</option>
+      <option value=" frown" <%= (journal.emoticonAcceptance == "frown")?'selected':'' %>&#128550;</option>
+      <option value="anguish" <%= (journal.emoticonAcceptance == "anguish")?'selected':'' %>&#128551;</option>
+      <option value="fearful" <%= (journal.emoticonAcceptance == "fearful")?'selected':'' %>&#128552;</option>
+      <option value="weary" <%= (journal.emoticonAcceptance == "weary")?'selected':'' %>&#128553;</option>
+      <option value="sleepy" <%= (journal.emoticonAcceptance == "sleepy")?'selected':'' %>&#128554;</option>
+      <option value="tired" <%= (journal.emoticonAcceptance == "tired")?'selected':'' %>&#128555;</option>
+      <option value="grimace" <%= (journal.emoticonAcceptance == "grimace")?'selected':'' %>&#128556;</option>
+      <option value="anger" <%= (journal.emoticonAcceptance == "anger")?'selected':'' %>&#128557;</option>
+      <option value="shock" <%= (journal.emoticonAcceptance == "shock")?'selected':'' %>&#128558;</option>
+      <option value="hush" <%= (journal.emoticonAcceptance == "hush")?'selected':'' %>&#128559;</option>
+      <option value="fearfulface" <%= (journal.emoticonAcceptance == "fearfulface")?'selected':'' %>&#128560;</option>
+      <option value="terror" <%= (journal.emoticonAcceptance == "terror")?'selected':'' %>&#128561;</option>
+      <option value="astonishment" <%= (journal.emoticonAcceptance == "astonishment")?'selected':'' %>&#128562;</option>
+      <option value=" flushed" <%= (journal.emoticonAcceptance == "flushed")?'selected':'' %>&#128563;</option>
+      <option value="flushed2" <%= (journal.emoticonAcceptance == "flushed2")?'selected':'' %>&#128564;</option>
+      <option value="sleeping" <%= (journal.emoticonAcceptance == "sleeping")?'selected':'' %>&#128565;</option>
+      <option value="dizzy" <%= (journal.emoticonAcceptance == "dizzy")?'selected':'' %>&#128566;</option>
+      <option value="mask" <%= (journal.emoticonAcceptance == "mask")?'selected':'' %>&#128567;</option>
+      </select>
+    </div>
 
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-    <br /><br />
-
-    <br />
-    <div>
+    <div class="form-group">
       <textarea
         for="conclusion"
         id="conclusion"
+        name="conclusion"
         rows="7"
         cols="50"
         placeholder="Enter concluding thoughts."
-      ></textarea>
+      >
+      <%= journal.conclusion %>
+    </textarea>
     </div>
+    <div class="form-group">
+      <label for="emoticon">How do you feel as you fill out this field?:</label>
 
-    <br />
-    <label for="emoticon">How do you feel as you fill out this field?:</label>
-
-    <select name="emoticon" id="emoticon">
-      <option value="">--Please choose an option--</option>
-      <option value="happy">happy</option>
-      <option value="sad">sad</option>
-      <option value="neutral">neutral</option>
-      <option value="depressed">depressed</option>
-      <option value="anxious">anxious</option>
-     
-<option value="grinn">&#128512;</option>
-<option value="grinn2">&#128513;</option>
-<option value="joytears ">&#128514;</option>
-<option value="smile">&#128515;</option>
-<option value="smileeyes ">&#128516;</option>
-<option value="smilenervous ">&#128517;</option>
-<option value="insinceresmile ">&#128518;</option>
-<option value="smilehalo ">&#128519;</option>
-<option value="devilsmile ">&#128520;</option>
-<option value="wink ">&#128521;</option>
-<option value="blush ">&#128522;</option>
-<option value="yummyfood ">&#128523;</option>
-<option value="relief ">&#128524;</option>
-<option value="hearteyes ">&#128525;</option>
-<option value="coolsmile ">&#128526;</option>
-<option value="smirk ">&#128527;</option>
-<option value="neutral">&#128528;</option>
-<option value="expressionless ">&#128529;</option>
-<option value="unamused ">&#128530;</option>
-<option value="coldsweat ">&#128531;</option>
-
-<option value="pensive">&#128532;</option>
-<option value="confused ">&#128533;</option>
-<option value="confused ">&#128534;</option>
-<option value="kiss ">&#128535;</option>
-<option value="throwkiss ">&#128536;</option>
-<option value="kissingsmile ">&#128537;</option>
-<option value="tenderkiss ">&#128538;</option>
-<option value="silly ">&#128539;</option>
-<option value="silly2 ">&#128540;</option>
-<option value=" supersilly">&#128541;</option>
-<option value="disappointed ">&#128542;</option>
-<option value="worried">&#128543;</option>
-<option value="angry">&#128544;</option>
-<option value="pouting">&#128545;</option>
-<option value="crying">&#128546;</option>
-<option value="perservering">&#128547;</option>
-<option value="triumph">&#128548;</option>
-<option value="reliefdissapointment">&#128549;</option>
-<option value=" frown">&#128550;</option>
-<option value="anguish">&#128551;</option>
-<option value="fearful">&#128552;</option>
-<option value="weary">&#128553;</option>
-<option value="sleepy">&#128554;</option>
-<option value="tired">&#128555;</option>
-<option value="grimace">&#128556;</option>
-<option value="anger">&#128557;</option>
-<option value="shock">&#128558;</option>
-<option value="hush">&#128559;</option>
-<option value="fearfulface">&#128560;</option>
-<option value="terror">&#128561;</option>
-<option value="astonishment">&#128562;</option>
-<option value=" flushed">&#128563;</option>
-<option value="flushed2">&#128564;</option>
-<option value="sleeping">&#128565;</option>
-<option value="dizzy">&#128566;</option>
-<option value="mask">&#128567;</option>
-
-
-
- </select>
-
-    <br /><br />
-    <button>Add Entry</button>
-  </fieldset>
-</form>
-
-
-</div>
-
+      <select class="form-control" name="emoticon" id="emoticon">
+        <option value="">--Please choose an option--</option>
+        <option value="happy" "<%= (journal.emoticonConclusion == "happy")?'selected':'' %>>happy</option>
+        <option value="sad" <%= (journal.emoticonConclusion == "sad")?'selected':'' %>>sad</option>
+        <option value="neutral" <%= (journal.emoticonConclusion == "neutral")?'selected':'' %>>neutral</option>
+        <option value="depressed" <%= (journal.emoticonConclusion == "depressed")?'selected':'' %>>depressed</option>
+        <option value="anxious" <%= (journal.emoticonConclusion == "anxious")?'selected':'' %>>anxious</option>     
+        <option value="grinn" <%= (journal.emoticonConclusion == "grinn")?'selected':'' %>&#128512;</option>
+        <option value="grinn2"  <%= (journal.emoticonConclusion == "grinn2")?'selected':'' %>&#128513;</option>
+        <option value="joytears " <%= (journal.emoticonConclusion == "joytears")?'selected':'' %>&#128514;</option>
+        <option value="smile" <%= (journal.emoticonConclusion == "smile")?'selected':'' %>&#128515;</option>
+        <option value="smileeyes " <%= (journal.emoticonConclusion == "smileeyes")?'selected':'' %>&#128516;</option>
+        <option value="smilenervous " <%= (journal.emoticonConclusion == "smilenervous")?'selected':'' %>&#128517;</option>
+        <option value="insinceresmile " <%= (journal.emoticonConclusion == "insinceresmile")?'selected':'' %>&#128518;</option>
+        <option value="smilehalo " <%= (journal.emoticonConclusion == "smilehalo")?'selected':'' %>&#128519;</option>
+        <option value="devilsmile " <%= (journal.emoticonConclusion == "devilsmile")?'selected':'' %>&#128520;</option>
+        <option value="wink " <%= (journal.emoticonConclusion == "wink")?'selected':'' %>&#128521;</option>
+        <option value="blush " <%= (journal.emoticonConclusion == "blush")?'selected':'' %>&#128522;</option>
+        <option value="yummyfood " <%= (journal.emoticonConclusion == "yummyfood")?'selected':'' %>&#128523;</option>
+        <option value="relief " <%= (journal.emoticonConclusion == "relief")?'selected':'' %>&#128524;</option>
+        <option value="hearteyes " <%= (journal.emoticonConclusion == "hearteyes")?'selected':'' %>&#128525;</option>
+        <option value="coolsmile " <%= (journal.emoticonConclusion == "coolsmile")?'selected':'' %>&#128526;</option>
+        <option value="smirk " <%= (journal.emoticonConclusion == "smirk")?'selected':'' %>&#128527;</option>
+        <option value="neutral" <%= (journal.emoticonConclusion == "neutral")?'selected':'' %>&#128528;</option>
+        <option value="expressionless " <%= (journal.emoticonConclusion == "expressionless")?'selected':'' %>&#128529;</option>
+        <option value="unamused " <%= (journal.emoticonConclusion == "unamused")?'selected':'' %>&#128530;</option>
+        <option value="coldsweat " <%= (journal.emoticonConclusion == "coldsweat")?'selected':'' %>&#128531;</option>
+        <option value="pensive" <%= (journal.emoticonConclusion == "pensive")?'selected':'' %>&#128532;</option>
+        <option value="confused " <%= (journal.emoticonConclusion == "confused")?'selected':'' %>&#128534;</option>
+        <option value="kiss " <%= (journal.emoticonConclusion == "kiss")?'selected':'' %>&#128535;</option>
+        <option value="throwkiss " <%= (journal.emoticonConclusion == "throwkiss")?'selected':'' %>&#128536;</option>
+        <option value="kissingsmile " <%= (journal.emoticonConclusion == "kissingsmile")?'selected':'' %>&#128537;</option>
+        <option value="tenderkiss " <%= (journal.emoticonConclusion == "tenderkiss")?'selected':'' %>&#128538;</option>
+        <option value="silly " <%= (journal.emoticonConclusion == "silly")?'selected':'' %>&#128539;</option>
+        <option value="silly2 " <%= (journal.emoticonConclusion == "silly2")?'selected':'' %>&#128540;</option>
+        <option value=" supersilly" <%= (journal.emoticonConclusion == "supersilly")?'selected':'' %>&#128541;</option>
+        <option value="disappointed " <%= (journal.emoticonConclusion == "disappointed")?'selected':'' %>&#128542;</option>
+        <option value="worried" <%= (journal.emoticonConclusion == "worried")?'selected':'' %>&#128543;</option>
+        <option value="angry" <%= (journal.emoticonConclusion == "angry")?'selected':'' %>&#128544;</option>
+        <option value="pouting" <%= (journal.emoticonConclusion == "pouting")?'selected':'' %>&#128545;</option>
+        <option value="crying" <%= (journal.emoticonConclusion == "crying")?'selected':'' %>&#128546;</option>
+        <option value="perservering" <%= (journal.emoticonConclusion == "perservering")?'selected':'' %>&#128547;</option>
+        <option value="triumph" <%= (journal.emoticonConclusion == "triumph")?'selected':'' %>&#128548;</option>
+        <option value="reliefdissapointment" <%= (journal.emoticonConclusion == "reliefdissapointment")?'selected':'' %>&#128549;</option>
+        <option value=" frown" <%= (journal.emoticonConclusion == "frown")?'selected':'' %>&#128550;</option>
+        <option value="anguish" <%= (journal.emoticonConclusion == "anguish")?'selected':'' %>&#128551;</option>
+        <option value="fearful" <%= (journal.emoticonConclusion == "fearful")?'selected':'' %>&#128552;</option>
+        <option value="weary" <%= (journal.emoticonConclusion == "weary")?'selected':'' %>&#128553;</option>
+        <option value="sleepy" <%= (journal.emoticonConclusion == "sleepy")?'selected':'' %>&#128554;</option>
+        <option value="tired" <%= (journal.emoticonConclusion == "tired")?'selected':'' %>&#128555;</option>
+        <option value="grimace" <%= (journal.emoticonConclusion == "grimace")?'selected':'' %>&#128556;</option>
+        <option value="anger" <%= (journal.emoticonConclusion == "anger")?'selected':'' %>&#128557;</option>
+        <option value="shock" <%= (journal.emoticonConclusion == "shock")?'selected':'' %>&#128558;</option>
+        <option value="hush" <%= (journal.emoticonConclusion == "hush")?'selected':'' %>&#128559;</option>
+        <option value="fearfulface" <%= (journal.emoticonConclusion == "fearfulface")?'selected':'' %>&#128560;</option>
+        <option value="terror" <%= (journal.emoticonConclusion == "terror")?'selected':'' %>&#128561;</option>
+        <option value="astonishment" <%= (journal.emoticonConclusion == "astonishment")?'selected':'' %>&#128562;</option>
+        <option value=" flushed" <%= (journal.emoticonConclusion == "flushed")?'selected':'' %>&#128563;</option>
+        <option value="flushed2" <%= (journal.emoticonConclusion == "flushed2")?'selected':'' %>&#128564;</option>
+        <option value="sleeping" <%= (journal.emoticonConclusion == "sleeping")?'selected':'' %>&#128565;</option>
+        <option value="dizzy" <%= (journal.emoticonConclusion == "dizzy")?'selected':'' %>&#128566;</option>
+        <option value="mask" <%= (journal.emoticonConclusion == "mask")?'selected':'' %>&#128567;</option>
+        </select>
+      </div>
+      <button class="btn btn-success">Edit Entry</button>
+    </fieldset>
+    </form>
+  </div>
 </div>
 <%- include('../partials/footer.ejs') %>

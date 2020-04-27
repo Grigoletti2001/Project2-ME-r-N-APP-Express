@@ -1,12 +1,6 @@
-//list of all users 
+//list of all users <%- include('../partials/header.ejs') %> <%-
+include('../journals/nav.ejs') %>
 
-<%- include('../partials/header.ejs') %>
-
-  <%- include('../journals/nav.ejs') %>
-
-  <h3>All entries for user: <%= user.username %></h3>
-
-
-
+<h3>All entries for user: <%= user.username %></h3>
 
 <%- include('../partials/footer.ejs') %>

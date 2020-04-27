@@ -112,9 +112,38 @@ router.get("/:id/edit", requireAuth, async (req, res, next) => {
 // article update route: PUT /articles/:id
 router.put("/:id", async (req, res, next) => {
   try {
+    const {
+      title,
+      intro,
+      emoticonIntro,
+      context,
+      emoticonContext,
+      climax,
+      emoticonClimax,
+      acceptance,
+      emoticonAcceptance,
+      conclusion,
+      emoticonConclusion
+    } = req.body;
+    const entry = {
+      title,
+      //deleting date-info because doing it client side.
+      user: req.session.userId,
+      intro,
+      emoticonIntro,
+      context,
+      emoticonContext,
+      climax,
+      emoticonClimax,
+      acceptance,
+      conclusion,
+      emoticonAcceptance,
+      emoticonConclusion,
+      date: Date.now()
+    };
     const updatedJournal = await Journal.findByIdAndUpdate(
       req.params.id,
-      ...req.body,
+      entry,
       { new: true }
     );
 

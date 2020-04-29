@@ -3,10 +3,6 @@ _An express app._
 
 ***
 
-_Project wireframes: view only link here: _
-
-* https://1drv.ms/u/s!AtxzeA92Sv1PgolEmsugvkSLpKHJug. 
-
 <br>
 ***
 
